@@ -1,7 +1,7 @@
 #' Compiles a reaction network to a c++ shared object.
 #'
 #' @param network network S3 object from chemnet::network function.
-#' @param display_name name used to identify model.
+#' @param display_name name used to identify model. If left blank, a unique name will be automatically generated.
 #'
 #' @return theme object
 #' @export

@@ -9,7 +9,7 @@ compile(network, display_name = "")
 \arguments{
 \item{network}{network S3 object from chemnet::network function.}
 
-\item{display_name}{name used to identify model.}
+\item{display_name}{name used to identify model. If left blank, a unique name will be automatically generated.}
 }
 \value{
 theme object
