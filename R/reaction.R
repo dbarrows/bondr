@@ -60,10 +60,11 @@ print.reaction <- function(x, ...) {
 
 #' @export
 species.reaction <- function(x) {
-    species_names <- function(species_list)
-        ifelse(length(species_list) == 0, character(), species_list %>% sapply(function(species) species$name))
-        #length(species_list)
+    species_names <- function(species_list) {
+        if (length(species_list) == 0) ## ifelse fails here, leave as is
+            return(character())
+        species_list %>% sapply(function(species) species$name)
+    }
 
-    #c(species_names(x$reactants), species_names(x$products)) %>% unique()
-    species_names(x$products)
+    c(species_names(x$reactants), species_names(x$products)) %>% unique()
 }

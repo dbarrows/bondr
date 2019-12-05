@@ -12,14 +12,8 @@ parse_network <- function(string) {
         species <- c(species,
                      sapply(reaction$reactants, function(sp) sp$name),
                      sapply(reaction$products, function(sp) sp$name))
-
-    empty_sets <- c("0", "\\u00d8")
-
-    species <- unique(species)
-    species <- species[!(species %in% empty_sets)]
     
     structure(list(
-            species = species,
             reactions = reactions
         ),
         class = "network"
@@ -28,5 +22,5 @@ parse_network <- function(string) {
 
 #' @export
 species.network <- function(x) {
-    sapply(x$reactions, species) %>% unique()
+    sapply(x$reactions, species) %>% unlist() %>% unique()
 }
