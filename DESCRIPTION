@@ -18,4 +18,6 @@ Imports:
     Rcpp,
     RcppArmadillo,
     stringi,
-    fs
+    fs,
+    crayon
+    

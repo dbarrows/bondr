@@ -5,7 +5,6 @@
 #'
 #' @return species object
 #' @export
-#' @import stringr
 parse_species <- function(string) {
     if (string %in% empty_sets) return(NA)
 
@@ -24,7 +23,7 @@ parse_species <- function(string) {
 #' @export
 as.character.species <- function(x, ...) {
     coef <- ifelse(x$order == 1, "", x$order)
-    paste0(coef, x$name)
+    silver(coef) %+% x$name
 }
 
 #' @export

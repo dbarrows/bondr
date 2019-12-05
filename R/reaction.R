@@ -44,16 +44,17 @@ parse_reaction <- function(string) {
     reactions
 }
 
+specieslist_string <- function(s_list) {
+    string <- s_list %>% sapply(as.character) %>% paste(collapse = " + ")
+    ifelse(string == "", "\u00d8", string)
+}
+
 #' @export
 as.character.reaction <- function(x, ...) {
-    specieslist_string <- function(s_list) {
-        string <- s_list %>% sapply(as.character) %>% paste(collapse = " + ")
-        ifelse(string == "", "\u00d8", string)
-    }
-
     reactants_string <- specieslist_string(x$reactants)
     products_string <- specieslist_string(x$products)
-    paste0(reactants_string, " \u2192 ", products_string, ", rate: ", x$rate)
+
+    reactants_string %+% " " %+% silver(left_arrow) %+% " " %+% products_string %+% silver(", rate: ") %+% blue(x$rate)
 }
 
 #' @export
@@ -68,7 +69,3 @@ species.reaction <- function(x) {
 
     c(species_names(x$reactants), species_names(x$products)) %>% unique()
 }
-
-## quiets concerns of R CMD check re: the .'s that appear in pipelines
-if(getRversion() >= "2.15.1")
-    utils::globalVariables(c("."))
