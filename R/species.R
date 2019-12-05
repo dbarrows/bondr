@@ -22,14 +22,14 @@ parse_species <- function(string) {
 }
 
 #' @export
-toString.species <- function(x, ...) {
+as.character.species <- function(x, ...) {
     coef <- ifelse(x$order == 1, "", x$order)
     paste0(coef, x$name)
 }
 
 #' @export
 print.species <- function(x, ...) {
-    cat(paste(toString(x), "\n"))
+    cat(paste(as.character(x), "\n"))
 }
 
 #' species

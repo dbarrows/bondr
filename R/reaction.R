@@ -45,26 +45,26 @@ parse_reaction <- function(string) {
 }
 
 #' @export
-toString.reaction <- function(x, ...) {
-    specieslist_string <- function(s_list)
-        s_list %>% lapply(toString)
+as.character.reaction <- function(x, ...) {
+    specieslist_string <- function(s_list) {
+        string <- s_list %>% sapply(as.character) %>% paste(collapse = " + ")
+        ifelse(string == "", "\u00d8", string)
+    }
+
     reactants_string <- specieslist_string(x$reactants)
     products_string <- specieslist_string(x$products)
-    paste0(reactants_string, " -> ", products_string, ", rate: ", x$rate)
+    paste0(reactants_string, " \u2192 ", products_string, ", rate: ", x$rate)
 }
 
 #' @export
 print.reaction <- function(x, ...) {
-    cat(paste0(toString(x), "\n"))
+    cat(paste0(as.character(x), "\n"))
 }
 
 #' @export
 species.reaction <- function(x) {
-    species_names <- function(species_list) {
-        if (length(species_list) == 0) ## ifelse fails here, leave as is
-            return(character())
-        species_list %>% sapply(function(species) species$name)
-    }
+    species_names <- function(species_list)
+        species_list %>% sapply(function(species) species$name) %>% as.character()
 
     c(species_names(x$reactants), species_names(x$products)) %>% unique()
 }
