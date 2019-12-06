@@ -1,4 +1,4 @@
-update <- function(reaction, all_species, cpp = FALSE) {
+update_string <- function(reaction, all_species, cpp = FALSE) {
     x <- character()
     for (s in all_species) {
         delta <- 0
@@ -13,10 +13,19 @@ update <- function(reaction, all_species, cpp = FALSE) {
         if (delta != 0) {
             index <- ifelse(cpp, 0, 1) + match(s, all_species) - 1
             x <- c(x, ifelse(cpp,
-                             paste0("v[", index, "] += ", delta),
-                             paste0("v[", index, "] <- v[", index, "] + ", delta)))
+                             paste0("x[", index, "] += ", delta),
+                             delta))
         }
     }
-    terminator <- ifelse(cpp, ";", "\n")
-    paste(x, collapse = terminator %+% ifelse(cpp, " ", "")) %+% terminator
+    ifelse(cpp,
+           paste(x, collapse = "; ") %+% ";",
+           paste0("x + c(", paste(x, collapse = ", "), ")"))
+}
+
+update_function <- function(reaction, all_species) {
+    up_string <- update_string(reaction, all_species)
+    text <- paste0("function(x) {\n",
+                   "    ", up_string, "\n",
+                   "}")
+    eval(parse(text = text))
 }

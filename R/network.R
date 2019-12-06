@@ -6,14 +6,15 @@
 #' @export
 parse_network <- function(string) {
     reactions <- string %>% split_trim("\n") %>% lapply(parse_reaction) %>% unlist(recursive = FALSE)
-    species <- c()
-    for (reaction in reactions)
-        species <- c(species,
-                     sapply(reaction$reactants, function(sp) sp$name),
-                     sapply(reaction$products, function(sp) sp$name))
+
+    all_species <- species.network(list(reactions = reactions))
+    propensities <- reactions %>% lapply(propensity_function, all_species)
+    updates <- reactions %>% lapply(update_function, all_species)
     
     structure(list(
-            reactions = reactions
+            reactions = reactions,
+            propensities = propensities,
+            updates = updates
         ),
         class = "network"
     )

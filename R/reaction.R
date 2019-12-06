@@ -46,7 +46,6 @@ parse_reaction <- function(string) {
 
 specieslist_string <- function(s_list) {
     string <- s_list %>% sapply(as.character) %>% paste(collapse = " + ")
-    #ifelse(string == "", "\u00d8", string)
     ifelse(string == "", "0", string)
 }
 

@@ -1,41 +1,3 @@
-propensity_cpp <- function(reaction, species) {
-    r <- reaction$rate
-    x <- sapply(reaction$reactants, function(s) {
-            if (s$name %in% empty_sets)
-                return("")
-            index <- match(s$name, species)
-            prod <- paste0("v[", index-1, "]")
-            if (s$order > 1) {
-                xi <- prod
-                for (i in 1:(s$order-1)) {
-                    prod <- paste0(prod, "*(", xi, "-", i, ")")
-                }
-                prod <- paste0(prod, "/", factorial(s$order))
-            }
-            prod
-        })
-    x_mul <- paste(x, collapse = "*")
-    ifelse(str_length(x_mul) == 0, r, paste(c(r, "*", x_mul), collapse = ""))
-}
-
-update_cpp <- function(reaction, species) {
-    x <- character()
-    for (s in species) {
-        delta <- 0
-        for (r in reaction$reactants) {
-            if (r$name == s)
-                delta <- delta - r$order
-        }
-        for (p in reaction$products) {
-            if (p$name == s)
-                delta <- delta + p$order
-        }
-        if (delta != 0)
-            x <- c(x, paste0("v[", match(s, species) - 1, "] += ", delta, ";"))
-    }
-    paste(x, collapse = " ")
-}
-
 top_template <- '
 // [[Rcpp::plugins(cpp17)]]
 // [[Rcpp::depends(RcppArmadillo)]]
@@ -53,8 +15,8 @@ public:
 reaction_template <- '
             reaction {
                 ORDER,
-                [](const arma::vec& v) -> double { return PROPENSITY; },
-                [](arma::vec& v) { UPDATES }
+                [](const arma::vec& x) -> double { return PROPENSITY; },
+                [](arma::vec& x) { UPDATES }
             },
 '
 
