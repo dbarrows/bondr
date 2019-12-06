@@ -23,7 +23,7 @@ parse_species <- function(string) {
 #' @export
 as.character.species <- function(x, ...) {
     coef <- ifelse(x$order == 1, "", x$order)
-    silver(coef) %+% x$name
+    paste0(coef, x$name)
 }
 
 #' @export
