@@ -21,7 +21,7 @@ parse_network <- function(string) {
 
 #' @export
 species.network <- function(x) {
-    sapply(x$reactions, species) %>% unlist() %>% unique()
+    lapply(x$reactions, species) %>% unlist() %>% unique()
 }
 
 #' @export
