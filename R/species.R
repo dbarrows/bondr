@@ -8,7 +8,7 @@
 parse_species <- function(string) {
     if (string %in% empty_sets) return(NA)
 
-    parsed_order <- str_extract(string, "\\d+")
+    parsed_order <- str_extract(string, "\\^d+")
     order <- ifelse(is.na(parsed_order), 1, as.numeric(parsed_order))
     name <- ifelse(order == 1, string, str_replace(string, "\\d+", ""))
     
