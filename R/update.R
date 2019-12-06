@@ -10,11 +10,11 @@ update_string <- function(reaction, all_species, cpp = FALSE) {
             if (p$name == s)
                 delta <- delta + p$order
         }
-        if (delta != 0) {
+        if (!cpp)
+            x <- c(x, delta)
+        else if (cpp && delta != 0) {
             index <- ifelse(cpp, 0, 1) + match(s, all_species) - 1
-            x <- c(x, ifelse(cpp,
-                             paste0("x[", index, "] += ", delta),
-                             delta))
+            x <- c(x, paste0("x[", index, "] += ", delta))
         }
     }
     ifelse(cpp,

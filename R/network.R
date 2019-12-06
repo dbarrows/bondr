@@ -62,3 +62,17 @@ print.network <- function(x, ...) {
         "\n"    
     cat(out)
 }
+
+#' @export
+deriv_function <- function(network) {
+    n_reactions <- length(network$reactions)
+    n_species <- length(species(network))
+
+    stoi_mat <- matrix(0, nrow = n_species, ncol = n_reactions)
+    for (i in 1:n_reactions)
+        stoi_mat[,i] = network$updates[[i]](numeric(n_species))
+
+    function(t, y, parms,...) {
+        list(stoi_mat %*% (network$propensities %>% sapply(function(prop) prop(y))))
+    }
+}
