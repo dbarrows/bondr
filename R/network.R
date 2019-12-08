@@ -6,15 +6,9 @@
 #' @export
 parse_network <- function(string) {
     reactions <- string %>% split_trim("\n") %>% lapply(parse_reaction) %>% unlist(recursive = FALSE)
-
-    all_species <- species.network(list(reactions = reactions))
-    propensities <- reactions %>% lapply(propensity_function, all_species)
-    updates <- reactions %>% lapply(update_function, all_species)
     
     structure(list(
-            reactions = reactions,
-            propensities = propensities,
-            updates = updates
+            reactions = reactions
         ),
         class = "network"
     )
@@ -64,15 +58,23 @@ print.network <- function(x, ...) {
 }
 
 #' @export
-deriv_function <- function(network) {
-    n_reactions <- length(network$reactions)
-    n_species <- length(species(network))
+propensities <- function(network) {
+    network$reactions %>% lapply(propensity_function, species(network))
+}
 
-    stoi_mat <- matrix(0, nrow = n_species, ncol = n_reactions)
-    for (i in 1:n_reactions)
-        stoi_mat[,i] = network$updates[[i]](numeric(n_species))
+#' @export
+updates <- function(network) {
+    network$reactions %>% lapply(update_function, species(network))
+}
+
+#' @export
+deriv_function <- function(network) {
+    n_species <- length(species(network))
+    stoi_mat <- updates(network) %>% sapply(function(up) up(numeric(n_species)))
+    props <- propensities(network)
 
     function(t, y, parms,...) {
-        list(stoi_mat %*% (network$propensities %>% sapply(function(prop) prop(y))))
+        prod <- stoi_mat %*% (props %>% sapply(function(prop) prop(y)))
+        list(prod)
     }
 }
