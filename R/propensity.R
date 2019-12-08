@@ -1,4 +1,5 @@
-propensity_string <- function(reaction, all_species, cpp = FALSE) {
+#' @export
+propensity_snippet <- function(reaction, all_species, cpp = FALSE) {
     r <- reaction$rate
     x <- sapply(reaction$reactants, function(s) {
             if (s$name %in% empty_sets)
@@ -18,7 +19,7 @@ propensity_string <- function(reaction, all_species, cpp = FALSE) {
 }
 
 propensity_function <- function(reaction, all_species) {
-    prop_string <- propensity_string(reaction, all_species)
+    prop_string <- propensity_snippet(reaction, all_species)
     text <- paste0("function(x) {\n",
                    "    ", prop_string, "\n",
                    "}")

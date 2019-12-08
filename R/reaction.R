@@ -50,6 +50,12 @@ specieslist_string <- function(s_list) {
 }
 
 #' @export
+order <- function(reaction) {
+    orders <- reaction$reactants %>% lapply(function(species) species$order)
+    ifelse(length(orders) == 0, 0, prod(unlist(orders)))
+}
+
+#' @export
 as.character.reaction <- function(x, ...) {
     reactants_string <- specieslist_string(x$reactants)
     products_string <- specieslist_string(x$products)

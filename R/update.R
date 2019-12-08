@@ -1,4 +1,5 @@
-update_string <- function(reaction, all_species, cpp = FALSE) {
+#' @export
+update_snippet <- function(reaction, all_species, cpp = FALSE) {
     x <- character()
     for (s in all_species) {
         delta <- 0
@@ -23,7 +24,7 @@ update_string <- function(reaction, all_species, cpp = FALSE) {
 }
 
 update_function <- function(reaction, all_species) {
-    up_string <- update_string(reaction, all_species)
+    up_string <- update_snippet(reaction, all_species)
     text <- paste0("function(x) {\n",
                    "    ", up_string, "\n",
                    "}")
