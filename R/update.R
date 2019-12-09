@@ -1,4 +1,3 @@
-#' @export
 update_snippet <- function(reaction, all_species, cpp = FALSE) {
     x <- character()
     for (s in all_species) {

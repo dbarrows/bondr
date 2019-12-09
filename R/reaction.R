@@ -49,7 +49,6 @@ specieslist_string <- function(s_list) {
     ifelse(string == "", "0", string)
 }
 
-#' @export
 order <- function(reaction) {
     orders <- reaction$reactants %>% lapply(function(species) species$order)
     ifelse(length(orders) == 0, 0, prod(unlist(orders)))

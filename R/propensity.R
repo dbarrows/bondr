@@ -1,4 +1,3 @@
-#' @export
 propensity_snippet <- function(reaction, all_species, cpp = FALSE) {
     r <- reaction$rate
     x <- sapply(reaction$reactants, function(s) {

@@ -2,7 +2,7 @@
 #' of a chemical species
 #'
 #' @param string string containing the chemical species representation
-#'
+#' 
 #' @return species object
 #' @export
 parse_species <- function(string) {
