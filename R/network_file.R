@@ -25,12 +25,14 @@ bottom_template <- '
 };
 
 // [[Rcpp::export()]]
-reaction_network CONSTRUCTOR_NAME() {
-    return NETWORK_NAME();
+SEXP CONSTRUCTOR_NAME() {
+    reaction_network* network = new NETWORK_NAME();
+    Rcpp::XPtr<reaction_network> network_ptr(network);
+    return network_ptr;
 }
 '
 
-network_file <- function(network) {
+network_file <- function(network, force = FALSE) {
     name <- str_c("network_", digest(network))
 
     header_snippet <-  gsub("SPECIES",
@@ -59,19 +61,25 @@ network_file <- function(network) {
         eval(parse(text = str_c(constructor_name, "()")))
     }
 
-    temp_dir <- dir_create(file_temp())
-    file_copy(path(system.file("include", package = "chemnet"), "reaction_network.h"),
-              path(temp_dir, "reaction_network.h"))
-    path <- path(temp_dir,
-                 str_c(name, ".gen.r.cpp"))
-    
-    f <- file(path)
-    writeLines(contents, f)
-    close(f)
+    temp_dir <- dir_create(path(tempdir(), "networks"))
+    file_name <- str_c(name, ".gen.r.cpp")
+    file_path <- path(temp_dir, file_name)
+
+    if (!file_exists(file_path) || force) {
+        file_copy(path(system.file("include", package = "chemnet"), "reaction_network.h"),
+                  path(temp_dir, "reaction_network.h"),
+                  overwrite = TRUE)
+        path <- path(temp_dir,
+                     str_c(name, ".gen.r.cpp"))
+
+        f <- file(file_path)
+        writeLines(contents, f)
+        close(f)
+    }
 
     structure(list(
             name = name,
-            path = path,
+            path = file_path,
             constructor = constructor
         ),
         class = "network_file"

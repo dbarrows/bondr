@@ -9,7 +9,7 @@
 #' @importFrom crayon blurred blue silver make_style strip_style %+%
 #' @importFrom Rcpp sourceCpp
 #' @importFrom digest digest
-#' @importFrom fs dir_create file_temp file_copy path
+#' @importFrom fs dir_create file_temp file_copy path file_exists path_dir
 NULL
 
 ## quiets concerns of R CMD check re: the .'s that appear in pipelines

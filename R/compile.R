@@ -1,6 +1,6 @@
 #' @export
-compile_network <- function(network) {
-    netfile <- network_file(network)
-    sourceCpp(netfile$path)
+compile_network <- function(network, force = FALSE) {
+    netfile <- network_file(network, force)
+    sourceCpp(netfile$path, cacheDir = path_dir(netfile$path), rebuild = force)
     netfile$constructor()
 }
