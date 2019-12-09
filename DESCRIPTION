@@ -19,5 +19,5 @@ Imports:
     RcppArmadillo,
     stringi,
     fs,
-    crayon
-    
+    crayon,
+    digest
