@@ -34,7 +34,7 @@ synthesis
 #> 1       A + B -> C         2.4e-5
 ```
 
-#### Sources / Sinks
+#### Sources / sinks
 
 You can specify sources / sinks using `0` as the species name.
 
@@ -74,7 +74,7 @@ parse_network("A <-> B, 1e-1, 2.2")
 #> 2           B -> A          2.2
 ```
 
-#### Species Orders
+#### Species orders
 
 Prefixing a species name with a number will be interpreted as a reaction
 coefficient.
@@ -111,16 +111,18 @@ network <- parse_network("
 props <- propensities(network)
 props
 #> [[1]]
-#> function(x) {
-#>     2.5*x[1]
+#> function (x) 
+#> {
+#>     2.5 * x[1]
 #> }
-#> <environment: 0x7f97dfcbc5f0>
+#> <environment: 0x7fbcb7996a50>
 #> 
 #> [[2]]
-#> function(x) {
-#>     4e-2*x[2]*(x[2]-1)/2*x[3]
+#> function (x) 
+#> {
+#>     0.04 * x[2] * (x[2] - 1)/2 * x[3]
 #> }
-#> <environment: 0x7f97dfc06a50>
+#> <environment: 0x7fbcb794b718>
 ```
 
 Note that dimerisations and multiple reactants are handled properly.
@@ -137,3 +139,78 @@ state <- c(2, 5, 4) # Corresponds to A, B, C
 (props[[2]](state))
 #> [1] 1.6
 ```
+
+#### Stoichiometric matrix
+
+A matrix that conveys how the system updates when reactions fire. The
+columns correspond to reactions, and the rows to species.
+
+``` r
+(network <- parse_network(mm_string))
+#> # Reaction network: 3 reactions x 4 species
+#>     Reactants    Products     Rate
+#> 1       S + E -> SE        1.66e-3
+#> 2          SE -> S + E        1e-4
+#> 3          SE -> E + P        1e-1
+stoichiometric_matrix(network)
+#>      [,1] [,2] [,3]
+#> [1,]   -1    1    0
+#> [2,]   -1    1    1
+#> [3,]    1   -1   -1
+#> [4,]    0    0    1
+```
+
+## Solving
+
+`chemnet` also provides a function `deeriv_function` to get a derivative
+function compatible with the `deSolve` R package, which contains a
+number of numerical integrators.
+
+#### Using `deSolve`
+
+Obtaining a deterministic solution to a system as in the Reaction Rate
+Equation can be done as follows.
+
+``` r
+library(deSolve)
+
+(mm_network <- parse_network(mm_string))
+#> # Reaction network: 3 reactions x 4 species
+#>     Reactants    Products     Rate
+#> 1       S + E -> SE        1.66e-3
+#> 2          SE -> S + E        1e-4
+#> 3          SE -> E + P        1e-1
+
+y <- c(S = 300, E = 120, SE = 0, P = 0)
+times <- seq(0, 30, length.out = 100)
+func <- deriv_function(mm_network)
+
+sol <- ode(y, times, func)
+head(sol)
+#>           time        S         E       SE         P
+#> [1,] 0.0000000 300.0000 120.00000  0.00000 0.0000000
+#> [2,] 0.3030303 283.6196 103.87346 16.12654 0.2538657
+#> [3,] 0.6060606 270.0844  91.02873 28.97127 0.9443315
+#> [4,] 0.9090909 258.6933  80.67784 39.32216 1.9845847
+#> [5,] 1.2121212 248.9504  72.25847 47.74153 3.3080324
+#> [6,] 1.5151515 240.4961  65.35880 54.64120 4.8626940
+```
+
+#### Plotting
+
+You can then plot the solution using a few `tidyverse` packages fairly
+easily.
+
+``` r
+library(tidyverse)
+library(emplot)
+
+sol %>%
+    data.frame() %>%
+    rename(Time = time) %>%
+    pivot_longer(species(mm_network), names_to = "Species", values_to = "Quantity") %>%
+    ggplot(aes(x = Time, y = Quantity, colour = Species)) +
+        geom_line()
+```
+
+<img src="man/figures/README-unnamed-chunk-11-1.svg" width="100%" />

@@ -1,3 +1,13 @@
+#' Generates the update functions to use for the reaction network.
+#' 
+#' @param network a reaction network object created using \code{parse_network}
+#' 
+#' @return a list of update functions
+#' @export
+updates <- function(network) {
+    network$reactions %>% lapply(update_function, species(network))
+}
+
 update_snippet <- function(reaction, all_species, cpp = FALSE) {
     x <- character()
     for (s in all_species) {

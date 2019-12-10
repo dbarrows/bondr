@@ -1,3 +1,13 @@
+#' Generates the propensity functions to use for the reaction network.
+#' 
+#' @param network a reaction network object created using \code{parse_network}
+#' 
+#' @return a list of propensity functions
+#' @export
+propensities <- function(network) {
+    network$reactions %>% lapply(propensity_function, species(network))
+}
+
 propensity_snippet <- function(reaction, all_species, cpp = FALSE) {
     r <- reaction$rate
     x <- sapply(reaction$reactants, function(s) {
