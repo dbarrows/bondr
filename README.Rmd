@@ -1,0 +1,102 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# chemnet
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+Chemnet provides utilities and classes for working with reaction networks
+
+## Installation
+
+You can install the development version from [GitHub](https://github.com/) with:
+
+```r
+devtools::install_github("dbarrows/chemnet")
+```
+## Creating networks
+
+You write systems of reactions using a natural syntax, and chemnet will parse it and turn it into an S3 object.
+
+```{r}
+library(chemnet)
+
+synthesis <- parse_network("A + B -> C, 2.4e-5")
+synthesis
+```
+
+#### Sources / Sinks
+
+You can specify sources / sinks using `0` as the species name.
+
+```{r}
+parse_network("0 -> A, 4")
+```
+
+#### Multiple reactions
+
+Reactions can be entered on new lines.
+
+```{r}
+network_string <- "
+    S + E -> SE, 1.66e-3
+    SE -> E + P, 1e-1
+"
+parse_network(network_string)
+```
+
+#### Bidirectional reactions
+
+You can use `<->` to indicate bidirectional reactions, with an additional rate specified at the end of the line.
+
+```{r}
+parse_network("A <-> B, 1e-1, 2.2")
+```
+
+#### Species Orders
+
+Prefixing a species name with a number will be interpreted as a reaction coefficient.
+
+```{r}
+network <- parse_network("2A -> B, 1e-1")
+str(network$reactions[[1]])
+```
+
+## Using networks
+
+#### Propensity functions
+
+You can generate the propensity functions for a reaction network.
+
+```{r}
+network <- parse_network("
+         A -> B, 2.5
+    2B + C -> A, 4e-2
+")
+props <- propensities(network)
+props
+```
+
+Note that dimerisations and multiple reactants are handled properly.
+
+Propensity functions take a state vector of species quantities, ordered according to the output of the `species` function.
+
+```{r}
+species(network)
+state <- c(2, 5, 4) # Corresponds to A, B, C
+(props[[1]](state))
+(props[[2]](state))
+```

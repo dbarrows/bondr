@@ -30,11 +30,14 @@ print.network <- function(x, ...) {
 
     reactants_width <- max(max_length(reactants_strings), 10)
     products_width <- max(max_length(products_strings), 10)
-    rate_width <- x$reactions %>% sapply(function(reaction) str_length(as.character(reaction$rate))) %>% max()
+    rate_width <- x$reactions %>% sapply(function(reaction) str_length(as.character(reaction$rate))) %>% max(4)
 
-    desc <- blurred("# Chemical reaction network") %+% "\n"
+    desc <- blurred(str_c("# Reaction network: ",
+                          length(x$reactions), " reaction", ifelse(1 < length(x$reactions), "s", ""),
+                          " x ",
+                          length(species(x)), " species")) %+% "\n"
     header <- blue(sprintf(paste0("%", reactants_width + width + 2, "s"), "Reactants") %+%
-                   "   " %+%
+                   "    " %+%
                    sprintf(paste0("%", -products_width, "s"), "Products") %+%
                    sprintf(paste0("%", rate_width, "s"), "Rate") %+%
                    "\n")
@@ -46,7 +49,7 @@ print.network <- function(x, ...) {
                 reactants %+% " " %+%
                 silver(left_arrow) %+% " " %+%
                 products %+%
-                formatC(reaction$rate, width = rate_width)
+                sprintf(paste0("%", rate_width, "s"), reaction$rate)
         }) %>%
         paste(collapse = "\n")
 
