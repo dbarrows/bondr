@@ -1,14 +1,14 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# chemnet
+# bondr
 
 <!-- badges: start -->
 
 <!-- badges: end -->
 
-Chemnet provides utilities and classes for working with reaction
-networks
+An R package providing utilities and classes for working with reaction
+networks.
 
 ## Installation
 
@@ -16,16 +16,16 @@ You can install the development version from
 [GitHub](https://github.com/) with:
 
 ``` r
-devtools::install_github("dbarrows/chemnet")
+devtools::install_github("dbarrows/bondr")
 ```
 
 ## Creating networks
 
-You write systems of reactions using a natural syntax, and chemnet will
+You write systems of reactions using a natural syntax, and bondr will
 parse it and turn it into an S3 object.
 
 ``` r
-library(chemnet)
+library(bondr)
 
 synthesis <- parse_network("A + B -> C, 2.4e-5")
 synthesis
@@ -115,14 +115,14 @@ props
 #> {
 #>     2.5 * x[1]
 #> }
-#> <environment: 0x7fbcb7996a50>
+#> <environment: 0x7f89f9509450>
 #> 
 #> [[2]]
 #> function (x) 
 #> {
 #>     0.04 * x[2] * (x[2] - 1)/2 * x[3]
 #> }
-#> <environment: 0x7fbcb794b718>
+#> <environment: 0x7f89f92b4918>
 ```
 
 Note that dimerisations and multiple reactants are handled properly.
@@ -162,7 +162,7 @@ stoichiometric_matrix(network)
 
 ## Solving
 
-`chemnet` also provides a function `deeriv_function` to get a derivative
+`bondr` also provides a function `deriv_function` to get a derivative
 function compatible with the `deSolve` R package, which contains a
 number of numerical integrators.
 
@@ -198,7 +198,7 @@ head(sol)
 
 #### Plotting
 
-You can then plot the solution using a few `tidyverse` packages fairly
+You can then plot the solution using a few `tidyverse` functions fairly
 easily.
 
 ``` r

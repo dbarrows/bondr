@@ -66,7 +66,7 @@ network_file <- function(network, force = FALSE) {
     file_path <- path(temp_dir, file_name)
 
     if (!file_exists(file_path) || force) {
-        file_copy(path(system.file("include", package = "chemnet"), "reaction_network.h"),
+        file_copy(path(system.file("include", package = "bondr"), "reaction_network.h"),
                   path(temp_dir, "reaction_network.h"),
                   overwrite = TRUE)
         path <- path(temp_dir,

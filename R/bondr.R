@@ -1,9 +1,9 @@
-#' \code{chemnet} package
+#' \code{bondr} package
 #'
 #' Chemical Reaction Networks
 #'
 #' @docType package
-#' @name chemnet
+#' @name bondr
 #' @importFrom magrittr %>%
 #' @importFrom stringr str_extract str_replace str_length str_c str_sub
 #' @importFrom crayon blurred blue silver make_style strip_style %+%

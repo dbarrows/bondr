@@ -13,5 +13,5 @@ stoichiometric_matrix(network)
 stoichiometric matrix
 }
 \description{
-Generates the stoichiometric matrix for a reaction network
+Columns correspond to reactions, and rows to species
 }
