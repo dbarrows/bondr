@@ -7,8 +7,7 @@
 
 <!-- badges: end -->
 
-An R package providing utilities and classes for working with reaction
-networks.
+Provides utilities and classes for working with reaction networks in R.
 
 ## Installation
 
@@ -115,14 +114,14 @@ props
 #> {
 #>     2.5 * x[1]
 #> }
-#> <environment: 0x7f89f9509450>
+#> <environment: 0x7ffc62cf52d0>
 #> 
 #> [[2]]
 #> function (x) 
 #> {
 #>     0.04 * x[2] * (x[2] - 1)/2 * x[3]
 #> }
-#> <environment: 0x7f89f92b4918>
+#> <environment: 0x7ffc600b2908>
 ```
 
 Note that dimerisations and multiple reactants are handled properly.

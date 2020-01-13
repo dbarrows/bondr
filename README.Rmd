@@ -22,7 +22,7 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-An R package providing utilities and classes for working with reaction networks.
+Provides utilities and classes for working with reaction networks in R.
 
 ## Installation
 

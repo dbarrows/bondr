@@ -3,6 +3,8 @@
 #include <RcppArmadillo.h>
 #include <functional>
 
+namespace bondr {
+
 struct reaction {
     uint order;
     std::function<double(const arma::vec&)> propensity;
@@ -14,3 +16,5 @@ public:
     std::vector<std::string> species;
     std::vector<reaction> reactions;
 };
+
+}

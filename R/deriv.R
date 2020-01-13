@@ -10,7 +10,8 @@ deriv_function <- function(network) {
     props <- propensities(network)
 
     function(t, y, parms,...) {
-        prod <- stoi_mat %*% (props %>% sapply(function(prop) prop(y)))
-        list(prod)
+        stoi_mat %*% (props %>% sapply(function(prop) prop(y))) %>%
+            as.vector() %>%
+            list()
     }
 }

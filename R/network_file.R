@@ -4,7 +4,7 @@ top_template <- '
 
 #include "rnet.h"
 
-class NETWORK_NAME : public rnet {
+class NETWORK_NAME : public bondr::rnet {
 public:
     NETWORK_NAME() {
         species = { SPECIES };
@@ -12,7 +12,7 @@ public:
 '
 
 reaction_template <- '
-            reaction {
+            bondr::reaction {
                 ORDER,
                 [](const arma::vec& x) -> double { return PROPENSITY; },
                 [](arma::vec& x) { UPDATES }
@@ -26,9 +26,7 @@ bottom_template <- '
 
 // [[Rcpp::export()]]
 SEXP CONSTRUCTOR_NAME() {
-    rnet* network = new NETWORK_NAME();
-    Rcpp::XPtr<rnet> network_ptr(network);
-    return network_ptr;
+    return Rcpp::XPtr<bondr::rnet>(new NETWORK_NAME());
 }
 '
 
