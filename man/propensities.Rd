@@ -4,10 +4,12 @@
 \alias{propensities}
 \title{Generates the propensity functions to use for the reaction network.}
 \usage{
-propensities(network)
+propensities(network, rateless = FALSE)
 }
 \arguments{
 \item{network}{a reaction network object created using \code{parse_network}}
+
+\item{rateless}{if \code{TRUE} (default \code{FALSE}), generates propensities without using rate constants}
 }
 \value{
 a list of propensity functions

@@ -4,12 +4,16 @@
 \alias{compile_network}
 \title{Compiles a reaction network to a C++ object.}
 \usage{
-compile_network(network, force = FALSE)
+compile_network(network, rateless = FALSE, force = FALSE, display_path = FALSE)
 }
 \arguments{
 \item{network}{a reaction network object created using \code{parse_network}}
 
-\item{force}{if set to \code{TRUE}, forces the overwriting and recompilation of the network source file}
+\item{rateless}{if \code{TRUE} (default \code{FALSE}), generates propensities without using rate constants}
+
+\item{force}{if \code{TRUE} (default \code{FALSE}), forces the overwriting and recompilation of the network source file}
+
+\item{display_path}{if \code{TRUE} (default \code{FALSE}), displays the path to the network file}
 }
 \value{
 \code{Xptr} to a compiled network object

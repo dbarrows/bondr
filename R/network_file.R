@@ -1,5 +1,4 @@
 top_template <- '
-// [[Rcpp::plugins(cpp17)]]
 // [[Rcpp::depends(RcppArmadillo)]]
 
 #include "rnet.h"
@@ -30,8 +29,8 @@ SEXP CONSTRUCTOR_NAME() {
 }
 '
 
-network_file <- function(network, force = FALSE) {
-    name <- str_c("network_", digest(network))
+network_file <- function(network, rateless = FALSE, force = FALSE) {
+    name <- str_c("network_", digest(list(network, rateless)))
 
     header_snippet <-  gsub("SPECIES",
                             str_c('"', species(network), '"', collapse = ', '),
@@ -41,7 +40,7 @@ network_file <- function(network, force = FALSE) {
         sapply(function(reaction) {
             reaction_template %>%
                 gsub("ORDER", order(reaction), .) %>%
-                gsub("PROPENSITY", propensity_snippet(reaction, species(network), cpp = TRUE), .) %>%
+                gsub("PROPENSITY", propensity_snippet(reaction, species(network), rateless = rateless, cpp = TRUE), .) %>%
                 gsub("UPDATES", update_snippet(reaction, species(network), cpp = TRUE), .)
         }) %>%
         str_sub(., 2, -2) %>%
@@ -67,9 +66,6 @@ network_file <- function(network, force = FALSE) {
         file_copy(path(system.file("include", package = "bondr"), "rnet.h"),
                   path(temp_dir, "rnet.h"),
                   overwrite = TRUE)
-        path <- path(temp_dir,
-                     str_c(name, ".gen.r.cpp"))
-
         f <- file(file_path)
         writeLines(contents, f)
         close(f)

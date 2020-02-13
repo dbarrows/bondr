@@ -1,15 +1,16 @@
 #' Generates the propensity functions to use for the reaction network.
 #' 
 #' @param network a reaction network object created using \code{parse_network}
+#' @param rateless if \code{TRUE} (default \code{FALSE}), generates propensities without using rate constants
 #' 
 #' @return a list of propensity functions
 #' @export
-propensities <- function(network) {
-    network$reactions %>% lapply(propensity_function, species(network))
+propensities <- function(network, rateless = FALSE) {
+    network$reactions %>% lapply(propensity_function, species(network), rateless = rateless)
 }
 
-propensity_snippet <- function(reaction, all_species, cpp = FALSE) {
-    r <- reaction$rate
+propensity_snippet <- function(reaction, all_species, rateless = FALSE, cpp = FALSE) {
+    r <- ifelse(rateless, 1, reaction$rate)
     x <- sapply(reaction$reactants, function(s) {
             if (s$name %in% empty_sets)
                 return("")
@@ -27,8 +28,8 @@ propensity_snippet <- function(reaction, all_species, cpp = FALSE) {
     ifelse(str_length(x_mul) == 0, r, paste(c(r, "*", x_mul), collapse = ""))
 }
 
-propensity_function <- function(reaction, all_species) {
-    prop_string <- propensity_snippet(reaction, all_species)
+propensity_function <- function(reaction, all_species, rateless = FALSE) {
+    prop_string <- propensity_snippet(reaction, all_species, rateless = rateless)
     text <- paste0("function(x) {\n",
                    "    ", prop_string, "\n",
                    "}")

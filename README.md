@@ -114,14 +114,14 @@ props
 #> {
 #>     2.5 * x[1]
 #> }
-#> <environment: 0x7ffc62cf52d0>
+#> <environment: 0x7fdeab82bc20>
 #> 
 #> [[2]]
 #> function (x) 
 #> {
 #>     0.04 * x[2] * (x[2] - 1)/2 * x[3]
 #> }
-#> <environment: 0x7ffc600b2908>
+#> <environment: 0x7fdeab880b60>
 ```
 
 Note that dimerisations and multiple reactants are handled properly.
