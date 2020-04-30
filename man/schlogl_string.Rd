@@ -4,7 +4,9 @@
 \name{schlogl_string}
 \alias{schlogl_string}
 \title{Schlogl network string}
-\format{An object of class \code{character} of length 1.}
+\format{
+An object of class \code{character} of length 1.
+}
 \usage{
 schlogl_string
 }

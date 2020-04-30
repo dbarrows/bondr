@@ -4,7 +4,9 @@
 \name{pc_string}
 \alias{pc_string}
 \title{PotassiumChannel network string}
-\format{An object of class \code{character} of length 1.}
+\format{
+An object of class \code{character} of length 1.
+}
 \usage{
 pc_string
 }

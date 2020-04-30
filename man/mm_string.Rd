@@ -4,7 +4,9 @@
 \name{mm_string}
 \alias{mm_string}
 \title{Michaelis Menten network string}
-\format{An object of class \code{character} of length 1.}
+\format{
+An object of class \code{character} of length 1.
+}
 \usage{
 mm_string
 }

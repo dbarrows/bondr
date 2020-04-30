@@ -4,7 +4,9 @@
 \name{gbk_string}
 \alias{gbk_string}
 \title{Golbeter-Koshland Switch network string}
-\format{An object of class \code{character} of length 1.}
+\format{
+An object of class \code{character} of length 1.
+}
 \usage{
 gbk_string
 }
