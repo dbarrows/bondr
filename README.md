@@ -114,14 +114,14 @@ props
 #> {
 #>     2.5 * x[1]
 #> }
-#> <environment: 0x7fdeab82bc20>
+#> <environment: 0x7fd076bec620>
 #> 
 #> [[2]]
 #> function (x) 
 #> {
 #>     0.04 * x[2] * (x[2] - 1)/2 * x[3]
 #> }
-#> <environment: 0x7fdeab880b60>
+#> <environment: 0x7fd076109510>
 ```
 
 Note that dimerisations and multiple reactants are handled properly.
@@ -202,14 +202,15 @@ easily.
 
 ``` r
 library(tidyverse)
-library(emplot)
+library(mplot)
 
 sol %>%
     data.frame() %>%
     rename(Time = time) %>%
     pivot_longer(species(mm_network), names_to = "Species", values_to = "Quantity") %>%
     ggplot(aes(x = Time, y = Quantity, colour = Species)) +
-        geom_line()
+        geom_line() +
+        theme_m()
 ```
 
 <img src="man/figures/README-unnamed-chunk-11-1.svg" width="100%" />

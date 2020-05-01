@@ -5,16 +5,19 @@
 
 namespace bondr {
 
+using namespace arma;
+using namespace std;
+
 struct reaction {
     uint order;
-    std::function<double(const arma::vec&)> propensity;
-    std::function<void(arma::vec&)> update;
+    function<double(const vec&)> propensity;
+    function<void(vec&)> update;
 };
 
 class rnet {
 public:
-    std::vector<std::string> species;
-    std::vector<reaction> reactions;
+    vector<string> species;
+    vector<reaction> reactions;
 };
 
 }

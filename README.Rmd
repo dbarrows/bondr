@@ -14,7 +14,8 @@ knitr::opts_chunk$set(
     fig.showtext = TRUE,
     fig.width = 7,
     fig.height = 4,
-    out.width = "100%"
+    out.width = "100%",
+    message = FALSE
 )
 ```
 
@@ -142,12 +143,13 @@ You can then plot the solution using a few `tidyverse` functions fairly easily.
 
 ```{r}
 library(tidyverse)
-library(emplot)
+library(mplot)
 
 sol %>%
     data.frame() %>%
     rename(Time = time) %>%
     pivot_longer(species(mm_network), names_to = "Species", values_to = "Quantity") %>%
     ggplot(aes(x = Time, y = Quantity, colour = Species)) +
-        geom_line()
+        geom_line() +
+        theme_m()
 ```
