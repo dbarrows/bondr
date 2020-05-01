@@ -25,10 +25,10 @@
     },
     "MASS": {
       "Package": "MASS",
-      "Version": "7.3-51.5",
+      "Version": "7.3-51.6",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "9efe80472b21189ebab1b74169808c26"
+      "Hash": "1dad32ac9dbd8057167b2979fb932ff7"
     },
     "Matrix": {
       "Package": "Matrix",
@@ -60,10 +60,10 @@
     },
     "RcppArmadillo": {
       "Package": "RcppArmadillo",
-      "Version": "0.9.860.2.0",
+      "Version": "0.9.870.2.0",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "da1503de8d67c2101d181250c41b75e1"
+      "Hash": "f7fee4557377d47093bd2b65f2642e52"
     },
     "askpass": {
       "Package": "askpass",
@@ -190,18 +190,6 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "7067d90c1c780bfe80c0d497e3d7b49d"
-    },
-    "emplot": {
-      "Package": "emplot",
-      "Version": "0.0.0.9000",
-      "Source": "GitHub",
-      "RemoteType": "github",
-      "RemoteHost": "api.github.com",
-      "RemoteRepo": "emplot",
-      "RemoteUsername": "dbarrows",
-      "RemoteRef": "master",
-      "RemoteSha": "cf22b7dc5a3807fed299bdc76563c8d112c1105c",
-      "Hash": "b0158c203034cc1946e6f41c6a23c087"
     },
     "evaluate": {
       "Package": "evaluate",
@@ -387,10 +375,22 @@
     },
     "modelr": {
       "Package": "modelr",
-      "Version": "0.1.6",
+      "Version": "0.1.7",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "30a2db10e829133fa0a1e6eaed25bc73"
+      "Hash": "5a10316936c16bb3b341f687c9ac0fff"
+    },
+    "mplot": {
+      "Package": "mplot",
+      "Version": "0.0.0.9000",
+      "Source": "GitHub",
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteRepo": "mplot",
+      "RemoteUsername": "dbarrows",
+      "RemoteRef": "master",
+      "RemoteSha": "1239e6613bc8fd937083cd08e13ea977452f6171",
+      "Hash": "3eee25e80154db7ffdca3669143e702c"
     },
     "munsell": {
       "Package": "munsell",
@@ -639,10 +639,10 @@
     },
     "systemfonts": {
       "Package": "systemfonts",
-      "Version": "0.2.0",
+      "Version": "0.2.1",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "460703984c7175ca7a830b6cbf86d243"
+      "Hash": "b9cbe1031f93e8d06e36a330705c654f"
     },
     "testthat": {
       "Package": "testthat",
