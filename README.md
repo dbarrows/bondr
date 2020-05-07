@@ -33,7 +33,7 @@ synthesis
 #> 1       A + B -> C         2.4e-5
 ```
 
-#### Sources / sinks
+### Sources / sinks
 
 You can specify sources / sinks using `0` as the species name.
 
@@ -44,7 +44,7 @@ parse_network("0 -> A, 4")
 #> 1           0 -> A            4
 ```
 
-#### Multiple reactions
+### Multiple reactions
 
 Reactions can be entered on new lines.
 
@@ -60,7 +60,7 @@ parse_network(network_string)
 #> 2          SE -> E + P        1e-1
 ```
 
-#### Bidirectional reactions
+### Bidirectional reactions
 
 You can use `<->` to indicate bidirectional reactions, with an
 additional rate specified at the end of the line.
@@ -73,7 +73,7 @@ parse_network("A <-> B, 1e-1, 2.2")
 #> 2           B -> A          2.2
 ```
 
-#### Species orders
+### Species orders
 
 Prefixing a species name with a number will be interpreted as a reaction
 coefficient.
@@ -98,7 +98,7 @@ str(network$reactions[[1]])
 
 ## Using networks
 
-#### Propensity functions
+### Propensity functions
 
 You can generate the propensity functions for a reaction network.
 
@@ -114,14 +114,14 @@ props
 #> {
 #>     2.5 * x[1]
 #> }
-#> <environment: 0x7fd076bec620>
+#> <environment: 0x7ffb87f50c40>
 #> 
 #> [[2]]
 #> function (x) 
 #> {
 #>     0.04 * x[2] * (x[2] - 1)/2 * x[3]
 #> }
-#> <environment: 0x7fd076109510>
+#> <environment: 0x7ffb87eb1fb8>
 ```
 
 Note that dimerisations and multiple reactants are handled properly.
@@ -139,7 +139,7 @@ state <- c(2, 5, 4) # Corresponds to A, B, C
 #> [1] 1.6
 ```
 
-#### Stoichiometric matrix
+### Stoichiometric matrix
 
 A matrix that conveys how the system updates when reactions fire. The
 columns correspond to reactions, and the rows to species.
@@ -165,7 +165,7 @@ stoichiometric_matrix(network)
 function compatible with the `deSolve` R package, which contains a
 number of numerical integrators.
 
-#### Using `deSolve`
+### Using `deSolve`
 
 Obtaining a deterministic solution to a system as in the Reaction Rate
 Equation can be done as follows.
@@ -195,7 +195,7 @@ head(sol)
 #> [6,] 1.5151515 240.4961  65.35880 54.64120 4.8626940
 ```
 
-#### Plotting
+### Plotting
 
 You can then plot the solution using a few `tidyverse` functions fairly
 easily.

@@ -1,0 +1,35 @@
+url: https://github.com/dbarrows/bondr
+
+template:
+    params:
+        bootswatch: flatly
+
+navbar:
+    structure:
+        left:  [github, reference]
+    components:
+        home: ~
+
+reference:
+- title: "Networks"
+  desc: Network derived properties
+- contents:
+    - propensities
+    - updates
+    - stoichiometric_matrix
+    - deriv_function
+- title: "Parsing"
+  desc: Network and network component parsing
+- contents:
+    - starts_with("parse_")
+- title: "Compiling"
+- contents:
+    - compile_network
+- title: "Network strings"
+  desc: Example networks
+- contents:
+    - ends_with("_string")
+- title: "S3 methods"
+- contents:
+    - species
+

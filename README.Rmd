@@ -44,7 +44,7 @@ synthesis <- parse_network("A + B -> C, 2.4e-5")
 synthesis
 ```
 
-#### Sources / sinks
+### Sources / sinks
 
 You can specify sources / sinks using `0` as the species name.
 
@@ -52,7 +52,7 @@ You can specify sources / sinks using `0` as the species name.
 parse_network("0 -> A, 4")
 ```
 
-#### Multiple reactions
+### Multiple reactions
 
 Reactions can be entered on new lines.
 
@@ -64,7 +64,7 @@ network_string <- "
 parse_network(network_string)
 ```
 
-#### Bidirectional reactions
+### Bidirectional reactions
 
 You can use `<->` to indicate bidirectional reactions, with an additional rate specified at the end of the line.
 
@@ -72,7 +72,7 @@ You can use `<->` to indicate bidirectional reactions, with an additional rate s
 parse_network("A <-> B, 1e-1, 2.2")
 ```
 
-#### Species orders
+### Species orders
 
 Prefixing a species name with a number will be interpreted as a reaction coefficient.
 
@@ -83,7 +83,7 @@ str(network$reactions[[1]])
 
 ## Using networks
 
-#### Propensity functions
+### Propensity functions
 
 You can generate the propensity functions for a reaction network.
 
@@ -107,7 +107,7 @@ state <- c(2, 5, 4) # Corresponds to A, B, C
 (props[[2]](state))
 ```
 
-#### Stoichiometric matrix
+### Stoichiometric matrix
 
 A matrix that conveys how the system updates when reactions fire. The columns correspond to reactions, and the rows to species.
 
@@ -120,7 +120,7 @@ stoichiometric_matrix(network)
 
 `bondr` also provides a function `deriv_function` to get a derivative function compatible with the `deSolve` R package, which contains a number of numerical integrators.
 
-#### Using `deSolve`
+### Using `deSolve`
 
 Obtaining a deterministic solution to a system as in the Reaction Rate Equation can be done as follows.
 
@@ -137,7 +137,7 @@ sol <- ode(y, times, func)
 head(sol)
 ```
 
-#### Plotting
+### Plotting
 
 You can then plot the solution using a few `tidyverse` functions fairly easily.
 
