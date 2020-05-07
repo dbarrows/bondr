@@ -22,6 +22,7 @@ knitr::opts_chunk$set(
 # bondr
 
 <!-- badges: start -->
+![R-CMD-check](https://github.com/dbarrows/bondr/workflows/R-CMD-check/badge.svg)
 <!-- badges: end -->
 
 Provides utilities and classes for working with reaction networks in R.

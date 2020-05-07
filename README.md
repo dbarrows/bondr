@@ -5,6 +5,7 @@
 
 <!-- badges: start -->
 
+![R-CMD-check](https://github.com/dbarrows/bondr/workflows/R-CMD-check/badge.svg)
 <!-- badges: end -->
 
 Provides utilities and classes for working with reaction networks in R.
@@ -114,14 +115,14 @@ props
 #> {
 #>     2.5 * x[1]
 #> }
-#> <environment: 0x7ffb87f50c40>
+#> <environment: 0x7fdd1b58f780>
 #> 
 #> [[2]]
 #> function (x) 
 #> {
 #>     0.04 * x[2] * (x[2] - 1)/2 * x[3]
 #> }
-#> <environment: 0x7ffb87eb1fb8>
+#> <environment: 0x7fdd1b606af8>
 ```
 
 Note that dimerisations and multiple reactants are handled properly.
