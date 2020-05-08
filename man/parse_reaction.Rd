@@ -10,7 +10,7 @@ parse_reaction(string)
 \item{string}{string containing the chemical reaction representation}
 }
 \value{
-list of reaction objects
+\code{\link{list}} of reaction objects
 }
 \description{
 If the reaction string contains a bidirectional reaction, the returned

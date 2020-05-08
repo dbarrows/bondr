@@ -10,7 +10,7 @@ stoichiometric_matrix(network)
 \item{network}{a reaction network object created using \code{\link{parse_network}}}
 }
 \value{
-stoichiometric matrix
+Stoichiometric \code{\link{matrix}}
 }
 \description{
 Columns correspond to reactions, rows to species.

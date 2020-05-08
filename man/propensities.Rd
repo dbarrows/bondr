@@ -12,7 +12,7 @@ propensities(network, rateless = FALSE)
 \item{rateless}{if \code{TRUE} (default \code{FALSE}), generates propensities without using rate constants}
 }
 \value{
-a list of propensity functions
+\code{\link{list}} of propensity functions
 }
 \description{
 Generates the propensity functions for a reaction network

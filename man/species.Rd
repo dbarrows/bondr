@@ -10,7 +10,7 @@ species(x)
 \item{x}{object containing species}
 }
 \value{
-vector of species names
+\code{\link{vector}} of species names
 }
 \description{
 species

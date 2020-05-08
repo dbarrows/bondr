@@ -4,7 +4,7 @@
 #' 
 #' @param network a reaction network object created using [`parse_network`]
 #' 
-#' @return stoichiometric matrix
+#' @return Stoichiometric [`matrix`]
 #' @export
 stoichiometric_matrix <- function(network) {
     zero_vec <- numeric(length(species(network)))

@@ -10,7 +10,7 @@ parse_network(string)
 \item{string}{string containing the chemical network representation}
 }
 \value{
-reaction network list object
+Reaction network \code{\link{list}} object
 }
 \description{
 Parses a string containing a representation of a chemical network

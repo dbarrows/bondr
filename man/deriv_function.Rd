@@ -10,7 +10,7 @@ deriv_function(network)
 \item{network}{a reaction network object created using \code{\link{parse_network}}}
 }
 \value{
-\code{\link{function}} with the signature \code{unction(t, y, parms, ...)}
+\code{\link{function}} with the signature \verb{function(t, y, parms, ...)}
 }
 \description{
 Generates a derivative function compatible with \href{https://cran.r-project.org/web/packages/deSolve/index.html}{\code{deSolve}}

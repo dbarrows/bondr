@@ -2,7 +2,7 @@
 #'
 #' @param string string containing the chemical network representation
 #'
-#' @return reaction network list object
+#' @return Reaction network [`list`] object
 #' @export
 parse_network <- function(string) {
     reactions <- string %>% split_trim("\n") %>% lapply(parse_reaction) %>% unlist(recursive = FALSE)

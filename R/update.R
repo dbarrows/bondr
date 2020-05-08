@@ -2,7 +2,7 @@
 #' 
 #' @param network a reaction network object created using [`parse_network`]
 #' 
-#' @return a list of update functions
+#' @return [`list`] of update functions
 #' @export
 updates <- function(network) {
     network$reactions %>% lapply(update_function, species(network))

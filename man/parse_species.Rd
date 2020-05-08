@@ -11,7 +11,7 @@ parse_species(string)
 \item{string}{string containing the chemical species representation}
 }
 \value{
-species object
+Species object
 }
 \description{
 Constructs a species object from a string containing a representation

@@ -3,7 +3,7 @@
 #'
 #' @param string string containing the chemical species representation
 #' 
-#' @return species object
+#' @return Species object
 #' @export
 parse_species <- function(string) {
     if (string %in% empty_sets) return(NA)
@@ -34,7 +34,8 @@ print.species <- function(x, ...) {
 #' species
 #' 
 #' @param x object containing species
-#' @return vector of species names
+#' 
+#' @return [`vector`] of species names
 #' @export
 species <- function(x) {
     UseMethod("species")

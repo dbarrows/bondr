@@ -3,7 +3,7 @@
 #' @param network a reaction network object created using [`parse_network`]
 #' @param rateless if `TRUE` (default `FALSE`), generates propensities without using rate constants
 #' 
-#' @return a list of propensity functions
+#' @return [`list`] of propensity functions
 #' @export
 propensities <- function(network, rateless = FALSE) {
     network$reactions %>% lapply(propensity_function, species(network), rateless = rateless)

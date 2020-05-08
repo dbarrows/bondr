@@ -5,7 +5,7 @@
 #'
 #' @param string string containing the chemical reaction representation
 #'
-#' @return list of reaction objects
+#' @return [`list`] of reaction objects
 #' @export
 parse_reaction <- function(string) {
     csv <- split_trim(string, ",")

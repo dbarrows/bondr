@@ -10,7 +10,7 @@ updates(network)
 \item{network}{a reaction network object created using \code{\link{parse_network}}}
 }
 \value{
-a list of update functions
+\code{\link{list}} of update functions
 }
 \description{
 Generates the update functions to use for the reaction network
