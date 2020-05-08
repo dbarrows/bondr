@@ -111,7 +111,7 @@ state <- c(2, 5, 4) # Corresponds to A, B, C
 A matrix that conveys how the system updates when reactions fire. The columns correspond to reactions, and the rows to species.
 
 ```{r}
-mm_string <- example_network_strings("mm")
+mm_string <- network_string_example("mm")
 cat(mm_string)
 (network <- parse_network(mm_string))
 stoichiometric_matrix(network)

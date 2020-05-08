@@ -114,14 +114,14 @@ network <- parse_network("
 #> {
 #>     2.5 * x[1]
 #> }
-#> <environment: 0x7fc3ba45b180>
+#> <environment: 0x7ff136c8e320>
 #> 
 #> [[2]]
 #> function (x) 
 #> {
 #>     0.04 * x[2] * (x[2] - 1)/2 * x[3]
 #> }
-#> <environment: 0x7fc3ba4d44f8>
+#> <environment: 0x7ff136d03788>
 ```
 
 Note that dimerisations and multiple reactants are handled properly.
@@ -145,7 +145,7 @@ A matrix that conveys how the system updates when reactions fire. The
 columns correspond to reactions, and the rows to species.
 
 ``` r
-mm_string <- example_network_strings("mm")
+mm_string <- network_string_example("mm")
 cat(mm_string)
 #> 
 #> S + E <-> SE,    1.66e-3, 1e-4

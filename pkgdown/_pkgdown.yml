@@ -27,7 +27,7 @@ reference:
     - compile_network
 - title: "Examples"
 - contents:
-    - example_network_strings
+    - network_string_example
 - title: "S3 methods"
 - contents:
     - species

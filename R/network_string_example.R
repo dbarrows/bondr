@@ -1,10 +1,11 @@
-#' Example network strings
+#' Example network string
 #' 
-#' @param name one of: `'mm'` (Michaelis Menten), `'shlogl'`, `'gbk'` (Goldbeter-Koshland Switch), or `'pc'` (Potassium Channel)
+#' @param name one of: `'mm'` (default, Michaelis Menten), `'shlogl'`, `'gbk'` (Goldbeter-Koshland Switch), or `'pc'` (Potassium Channel)
 #'
 #' @return Reaction network string for use in [parse_network()]
 #' @export
-example_network_strings <- function(name) {
+network_string_example <- function(name = NULL) {
+    if (is.null(name)) return(mm_string)
     switch(name,
         "mm" = mm_string,
         "schlogl" = schlogl_string,
