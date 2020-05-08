@@ -78,8 +78,7 @@
 <p>You write systems of reactions using a natural syntax, and bondr will parse it and turn it into an S3 object.</p>
 <div class="sourceCode" id="cb2"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">bondr</span>)
 
-<span class="no">synthesis</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/parse_network.html">parse_network</a></span>(<span class="st">"A + B -&gt; C, 2.4e-5"</span>)
-<span class="no">synthesis</span>
+(<span class="no">synthesis</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/parse_network.html">parse_network</a></span>(<span class="st">"A + B -&gt; C, 2.4e-5"</span>))
 <span class="co">#&gt; # Reaction network: 1 reaction x 3 species</span>
 <span class="co">#&gt;     Reactants    Products    Rate</span>
 <span class="co">#&gt; 1       A + B -&gt; C         2.4e-5</span></pre></div>
@@ -148,21 +147,20 @@
          A -&gt; B, 2.5
     2B + C -&gt; A, 4e-2
 "</span>)
-<span class="no">props</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/propensities.html">propensities</a></span>(<span class="no">network</span>)
-<span class="no">props</span>
+(<span class="no">props</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/propensities.html">propensities</a></span>(<span class="no">network</span>))
 <span class="co">#&gt; [[1]]</span>
 <span class="co">#&gt; function (x) </span>
 <span class="co">#&gt; {</span>
 <span class="co">#&gt;     2.5 * x[1]</span>
 <span class="co">#&gt; }</span>
-<span class="co">#&gt; &lt;environment: 0x7fbe42631af8&gt;</span>
+<span class="co">#&gt; &lt;environment: 0x7fc3ba45b180&gt;</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; [[2]]</span>
 <span class="co">#&gt; function (x) </span>
 <span class="co">#&gt; {</span>
 <span class="co">#&gt;     0.04 * x[2] * (x[2] - 1)/2 * x[3]</span>
 <span class="co">#&gt; }</span>
-<span class="co">#&gt; &lt;environment: 0x7fbe426a8e70&gt;</span></pre></div>
+<span class="co">#&gt; &lt;environment: 0x7fc3ba4d44f8&gt;</span></pre></div>
 <p>Note that dimerisations and multiple reactants are handled properly.</p>
 <p>Propensity functions take a state vector of species quantities, ordered according to the output of the <code>species</code> function.</p>
 <div class="sourceCode" id="cb8"><pre class="r"><span class="fu"><a href="reference/species.html">species</a></span>(<span class="no">network</span>)
@@ -177,7 +175,12 @@
 <h3 class="hasAnchor">
 <a href="#stoichiometric-matrix" class="anchor"></a>Stoichiometric matrix</h3>
 <p>A matrix that conveys how the system updates when reactions fire. The columns correspond to reactions, and the rows to species.</p>
-<div class="sourceCode" id="cb9"><pre class="r">(<span class="no">network</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/parse_network.html">parse_network</a></span>(<span class="no">mm_string</span>))
+<div class="sourceCode" id="cb9"><pre class="r"><span class="no">mm_string</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/example_network_strings.html">example_network_strings</a></span>(<span class="st">"mm"</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span>(<span class="no">mm_string</span>)
+<span class="co">#&gt; </span>
+<span class="co">#&gt; S + E &lt;-&gt; SE,    1.66e-3, 1e-4</span>
+<span class="co">#&gt;    SE  -&gt; E + P, 1e-1</span>
+(<span class="no">network</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/parse_network.html">parse_network</a></span>(<span class="no">mm_string</span>))
 <span class="co">#&gt; # Reaction network: 3 reactions x 4 species</span>
 <span class="co">#&gt;     Reactants    Products     Rate</span>
 <span class="co">#&gt; 1       S + E -&gt; SE        1.66e-3</span>
@@ -202,16 +205,9 @@
 <p>Obtaining a deterministic solution to a system as in the Reaction Rate Equation can be done as follows.</p>
 <div class="sourceCode" id="cb10"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">deSolve</span>)
 
-(<span class="no">mm_network</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/parse_network.html">parse_network</a></span>(<span class="no">mm_string</span>))
-<span class="co">#&gt; # Reaction network: 3 reactions x 4 species</span>
-<span class="co">#&gt;     Reactants    Products     Rate</span>
-<span class="co">#&gt; 1       S + E -&gt; SE        1.66e-3</span>
-<span class="co">#&gt; 2          SE -&gt; S + E        1e-4</span>
-<span class="co">#&gt; 3          SE -&gt; E + P        1e-1</span>
-
 <span class="no">y</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="kw">S</span> <span class="kw">=</span> <span class="fl">300</span>, <span class="kw">E</span> <span class="kw">=</span> <span class="fl">120</span>, <span class="kw">SE</span> <span class="kw">=</span> <span class="fl">0</span>, <span class="kw">P</span> <span class="kw">=</span> <span class="fl">0</span>)
 <span class="no">times</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span>(<span class="fl">0</span>, <span class="fl">30</span>, <span class="kw">length.out</span> <span class="kw">=</span> <span class="fl">100</span>)
-<span class="no">func</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/deriv_function.html">deriv_function</a></span>(<span class="no">mm_network</span>)
+<span class="no">func</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/deriv_function.html">deriv_function</a></span>(<span class="no">network</span>)
 
 <span class="no">sol</span> <span class="kw">&lt;-</span> <span class="fu">ode</span>(<span class="no">y</span>, <span class="no">times</span>, <span class="no">func</span>)
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">sol</span>)
@@ -233,10 +229,10 @@
 <span class="no">sol</span> <span class="kw">%&gt;%</span>
     <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>() <span class="kw">%&gt;%</span>
     <span class="fu">rename</span>(<span class="kw">Time</span> <span class="kw">=</span> <span class="no">time</span>) <span class="kw">%&gt;%</span>
-    <span class="fu">pivot_longer</span>(<span class="fu"><a href="reference/species.html">species</a></span>(<span class="no">mm_network</span>), <span class="kw">names_to</span> <span class="kw">=</span> <span class="st">"Species"</span>, <span class="kw">values_to</span> <span class="kw">=</span> <span class="st">"Quantity"</span>) <span class="kw">%&gt;%</span>
+    <span class="fu">pivot_longer</span>(<span class="fu"><a href="reference/species.html">species</a></span>(<span class="no">network</span>), <span class="kw">names_to</span> <span class="kw">=</span> <span class="st">"Species"</span>, <span class="kw">values_to</span> <span class="kw">=</span> <span class="st">"Quantity"</span>) <span class="kw">%&gt;%</span>
     <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="kw">x</span> <span class="kw">=</span> <span class="no">Time</span>, <span class="kw">y</span> <span class="kw">=</span> <span class="no">Quantity</span>, <span class="kw">colour</span> <span class="kw">=</span> <span class="no">Species</span>)) +
         <span class="fu">geom_line</span>() +
-        <span class="fu">theme_m</span>()</pre></div>
+        <span class="fu">theme_mc</span>()</pre></div>
 <p><img src="reference/figures/README-unnamed-chunk-11-1.svg" width="100%"></p>
 </div>
 </div>

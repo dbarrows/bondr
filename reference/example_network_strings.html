@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Creates a reaction object from a string — parse_reaction • bondr</title>
+<title>Example network strings — example_network_strings • bondr</title>
 
 
 <!-- jquery -->
@@ -41,9 +41,8 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Creates a reaction object from a string — parse_reaction" />
-<meta property="og:description" content="If the reaction string contains a bidirectional reaction, the returned
-list will contain both reaction objects." />
+<meta property="og:title" content="Example network strings — example_network_strings" />
+<meta property="og:description" content="Example network strings" />
 
 
 
@@ -106,30 +105,29 @@ list will contain both reaction objects." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Creates a reaction object from a string</h1>
-    <small class="dont-index">Source: <a href='https://github.com/dbarrows/bondr/blob/master/R/reaction.R'><code>R/reaction.R</code></a></small>
-    <div class="hidden name"><code>parse_reaction.Rd</code></div>
+    <h1>Example network strings</h1>
+    <small class="dont-index">Source: <a href='https://github.com/dbarrows/bondr/blob/master/R/example_network_strings.R'><code>R/example_network_strings.R</code></a></small>
+    <div class="hidden name"><code>example_network_strings.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>If the reaction string contains a bidirectional reaction, the returned
-list will contain both reaction objects.</p>
+    <p>Example network strings</p>
     </div>
 
-    <pre class="usage"><span class='fu'>parse_reaction</span>(<span class='no'>string</span>)</pre>
+    <pre class="usage"><span class='fu'>example_network_strings</span>(<span class='no'>name</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>string</th>
-      <td><p>string containing the chemical reaction representation</p></td>
+      <th>name</th>
+      <td><p>one of: <code>'mm'</code> (Michaelis Menten), <code>'shlogl'</code>, <code>'gbk'</code> (Goldbeter-Koshland Switch), or <code>'pc'</code> (Potassium Channel)</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><code><a href='https://rdrr.io/r/base/list.html'>list</a></code> of reaction objects</p>
+    <p>Reaction network string for use in <code><a href='parse_network.html'>parse_network()</a></code></p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

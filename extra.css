@@ -8,7 +8,13 @@ h1 {
     font-family: 'Lato', sans-serif;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    font-size: 20pt;
+    font-size: 24pt;
+    line-height: 1.5em;
+    margin-bottom: 1em;
+}
+h1 > a > code {
+    font-size: 24pt;
+    line-height: 1.5em;
     margin-bottom: 1em;
 }
 .page-header {
@@ -33,11 +39,25 @@ body {
 p {
     font-size: 13pt;
 }
+
 code, pre {
     font-family: "Inconsolata", monospace;
     font-size: 11pt;
-    background: #f8f8f8;
+    background: #fafafa;
 }
+pre {
+    border: 0px;
+    border-radius: 0px;
+}
+.btn-primary,
+.btn-primary:focus,
+.btn-primary:hover {
+    color: #000000;
+    background-color: #f0f0f0;
+    border-radius: 0px;
+    border-width: 0px;
+}
+
 table {
     border-spacing: 5px;
 }
@@ -71,7 +91,6 @@ code > a {
     font-family: 'Lato', sans-serif;
     font-size: 10pt;
     letter-spacing: 0.1em;
-    height: 7em;
 }
 .navbar-default .navbar-link, .navbar-default .navbar-nav>li>a,
 .navbar-default .navbar-link:hover {

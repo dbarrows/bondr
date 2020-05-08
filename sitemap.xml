@@ -13,10 +13,7 @@
     <loc>https://github.com/dbarrows/bondr/reference/deriv_function.html</loc>
   </url>
   <url>
-    <loc>https://github.com/dbarrows/bondr/reference/gbk_string.html</loc>
-  </url>
-  <url>
-    <loc>https://github.com/dbarrows/bondr/reference/mm_string.html</loc>
+    <loc>https://github.com/dbarrows/bondr/reference/example_network_strings.html</loc>
   </url>
   <url>
     <loc>https://github.com/dbarrows/bondr/reference/parse_network.html</loc>
@@ -28,13 +25,7 @@
     <loc>https://github.com/dbarrows/bondr/reference/parse_species.html</loc>
   </url>
   <url>
-    <loc>https://github.com/dbarrows/bondr/reference/pc_string.html</loc>
-  </url>
-  <url>
     <loc>https://github.com/dbarrows/bondr/reference/propensities.html</loc>
-  </url>
-  <url>
-    <loc>https://github.com/dbarrows/bondr/reference/schlogl_string.html</loc>
   </url>
   <url>
     <loc>https://github.com/dbarrows/bondr/reference/species.html</loc>
