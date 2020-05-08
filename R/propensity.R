@@ -1,4 +1,4 @@
-#' Generates the propensity functions for a reaction network
+#' Propensity functions for a reaction network
 #' 
 #' @param network a reaction network object created using [`parse_network`]
 #' @param rateless if `TRUE` (default `FALSE`), generates propensities without using rate constants

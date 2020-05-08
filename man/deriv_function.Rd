@@ -2,7 +2,7 @@
 % Please edit documentation in R/deriv_function.R
 \name{deriv_function}
 \alias{deriv_function}
-\title{Generates a derivative function compatible with \href{https://cran.r-project.org/web/packages/deSolve/index.html}{\code{deSolve}}}
+\title{Derivative function compatible with \href{https://cran.r-project.org/web/packages/deSolve/index.html}{\code{deSolve}}}
 \usage{
 deriv_function(network)
 }
@@ -13,5 +13,5 @@ deriv_function(network)
 \code{\link{function}} with the signature \verb{function(t, y, parms, ...)}
 }
 \description{
-Generates a derivative function compatible with \href{https://cran.r-project.org/web/packages/deSolve/index.html}{\code{deSolve}}
+Derivative function compatible with \href{https://cran.r-project.org/web/packages/deSolve/index.html}{\code{deSolve}}
 }

@@ -1,4 +1,4 @@
-#' Generates the stoichiometric matrix for a reaction network
+#' Stoichiometric matrix for a reaction network
 #' 
 #' Columns correspond to reactions, rows to species.
 #' 

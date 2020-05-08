@@ -2,7 +2,7 @@
 % Please edit documentation in R/reaction.R
 \name{parse_reaction}
 \alias{parse_reaction}
-\title{Parses a string containing a representation of a chemical reaction}
+\title{Creates a reaction object from a string}
 \usage{
 parse_reaction(string)
 }

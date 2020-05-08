@@ -28,8 +28,7 @@ parse it and turn it into an S3 object.
 ``` r
 library(bondr)
 
-synthesis <- parse_network("A + B -> C, 2.4e-5")
-synthesis
+(synthesis <- parse_network("A + B -> C, 2.4e-5"))
 #> # Reaction network: 1 reaction x 3 species
 #>     Reactants    Products    Rate
 #> 1       A + B -> C         2.4e-5
@@ -109,21 +108,20 @@ network <- parse_network("
          A -> B, 2.5
     2B + C -> A, 4e-2
 ")
-props <- propensities(network)
-props
+(props <- propensities(network))
 #> [[1]]
 #> function (x) 
 #> {
 #>     2.5 * x[1]
 #> }
-#> <environment: 0x7fbe42631af8>
+#> <environment: 0x7fc3ba45b180>
 #> 
 #> [[2]]
 #> function (x) 
 #> {
 #>     0.04 * x[2] * (x[2] - 1)/2 * x[3]
 #> }
-#> <environment: 0x7fbe426a8e70>
+#> <environment: 0x7fc3ba4d44f8>
 ```
 
 Note that dimerisations and multiple reactants are handled properly.
@@ -147,6 +145,11 @@ A matrix that conveys how the system updates when reactions fire. The
 columns correspond to reactions, and the rows to species.
 
 ``` r
+mm_string <- example_network_strings("mm")
+cat(mm_string)
+#> 
+#> S + E <-> SE,    1.66e-3, 1e-4
+#>    SE  -> E + P, 1e-1
 (network <- parse_network(mm_string))
 #> # Reaction network: 3 reactions x 4 species
 #>     Reactants    Products     Rate
@@ -175,16 +178,9 @@ Equation can be done as follows.
 ``` r
 library(deSolve)
 
-(mm_network <- parse_network(mm_string))
-#> # Reaction network: 3 reactions x 4 species
-#>     Reactants    Products     Rate
-#> 1       S + E -> SE        1.66e-3
-#> 2          SE -> S + E        1e-4
-#> 3          SE -> E + P        1e-1
-
 y <- c(S = 300, E = 120, SE = 0, P = 0)
 times <- seq(0, 30, length.out = 100)
-func <- deriv_function(mm_network)
+func <- deriv_function(network)
 
 sol <- ode(y, times, func)
 head(sol)
@@ -209,10 +205,10 @@ library(mplot)
 sol %>%
     data.frame() %>%
     rename(Time = time) %>%
-    pivot_longer(species(mm_network), names_to = "Species", values_to = "Quantity") %>%
+    pivot_longer(species(network), names_to = "Species", values_to = "Quantity") %>%
     ggplot(aes(x = Time, y = Quantity, colour = Species)) +
         geom_line() +
-        theme_m()
+        theme_mc()
 ```
 
 <img src="man/figures/README-unnamed-chunk-11-1.svg" width="100%" />

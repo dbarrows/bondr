@@ -41,8 +41,7 @@ You write systems of reactions using a natural syntax, and bondr will parse it a
 ```{r}
 library(bondr)
 
-synthesis <- parse_network("A + B -> C, 2.4e-5")
-synthesis
+(synthesis <- parse_network("A + B -> C, 2.4e-5"))
 ```
 
 ### Sources / sinks
@@ -93,8 +92,7 @@ network <- parse_network("
          A -> B, 2.5
     2B + C -> A, 4e-2
 ")
-props <- propensities(network)
-props
+(props <- propensities(network))
 ```
 
 Note that dimerisations and multiple reactants are handled properly.
@@ -113,6 +111,8 @@ state <- c(2, 5, 4) # Corresponds to A, B, C
 A matrix that conveys how the system updates when reactions fire. The columns correspond to reactions, and the rows to species.
 
 ```{r}
+mm_string <- example_network_strings("mm")
+cat(mm_string)
 (network <- parse_network(mm_string))
 stoichiometric_matrix(network)
 ```
@@ -128,11 +128,9 @@ Obtaining a deterministic solution to a system as in the Reaction Rate Equation 
 ```{r}
 library(deSolve)
 
-(mm_network <- parse_network(mm_string))
-
 y <- c(S = 300, E = 120, SE = 0, P = 0)
 times <- seq(0, 30, length.out = 100)
-func <- deriv_function(mm_network)
+func <- deriv_function(network)
 
 sol <- ode(y, times, func)
 head(sol)
@@ -149,8 +147,8 @@ library(mplot)
 sol %>%
     data.frame() %>%
     rename(Time = time) %>%
-    pivot_longer(species(mm_network), names_to = "Species", values_to = "Quantity") %>%
+    pivot_longer(species(network), names_to = "Species", values_to = "Quantity") %>%
     ggplot(aes(x = Time, y = Quantity, colour = Species)) +
         geom_line() +
-        theme_m()
+        theme_mc()
 ```

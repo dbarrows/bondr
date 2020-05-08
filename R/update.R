@@ -1,4 +1,4 @@
-#' Generates the update functions to use for the reaction network
+#' Update functions to use for the reaction network
 #' 
 #' @param network a reaction network object created using [`parse_network`]
 #' 

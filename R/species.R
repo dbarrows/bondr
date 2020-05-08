@@ -1,5 +1,4 @@
-#' Constructs a species object from a string containing a representation
-#' of a chemical species
+#' Creates a species object from a string
 #'
 #' @param string string containing the chemical species representation
 #' 

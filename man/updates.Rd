@@ -2,7 +2,7 @@
 % Please edit documentation in R/update.R
 \name{updates}
 \alias{updates}
-\title{Generates the update functions to use for the reaction network}
+\title{Update functions to use for the reaction network}
 \usage{
 updates(network)
 }
@@ -13,5 +13,5 @@ updates(network)
 \code{\link{list}} of update functions
 }
 \description{
-Generates the update functions to use for the reaction network
+Update functions to use for the reaction network
 }

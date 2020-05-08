@@ -1,4 +1,4 @@
-#' Parses a string containing a representation of a chemical network
+#' Creates a reaction network object from a string
 #'
 #' @param string string containing the chemical network representation
 #'

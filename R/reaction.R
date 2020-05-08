@@ -1,4 +1,4 @@
-#' Parses a string containing a representation of a chemical reaction
+#' Creates a reaction object from a string
 #' 
 #' If the reaction string contains a bidirectional reaction, the returned
 #' list will contain both reaction objects.

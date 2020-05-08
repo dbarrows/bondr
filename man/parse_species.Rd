@@ -2,8 +2,7 @@
 % Please edit documentation in R/species.R
 \name{parse_species}
 \alias{parse_species}
-\title{Constructs a species object from a string containing a representation
-of a chemical species}
+\title{Creates a species object from a string}
 \usage{
 parse_species(string)
 }
@@ -14,6 +13,5 @@ parse_species(string)
 Species object
 }
 \description{
-Constructs a species object from a string containing a representation
-of a chemical species
+Creates a species object from a string
 }

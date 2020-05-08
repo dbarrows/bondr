@@ -2,7 +2,7 @@
 % Please edit documentation in R/network.R
 \name{parse_network}
 \alias{parse_network}
-\title{Parses a string containing a representation of a chemical network}
+\title{Creates a reaction network object from a string}
 \usage{
 parse_network(string)
 }
@@ -13,5 +13,5 @@ parse_network(string)
 Reaction network \code{\link{list}} object
 }
 \description{
-Parses a string containing a representation of a chemical network
+Creates a reaction network object from a string
 }

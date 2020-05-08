@@ -12,23 +12,22 @@ navbar:
 
 reference:
 - title: "Networks"
-  desc: Network derived properties
+  desc: Reaction network derived properties
 - contents:
     - propensities
     - updates
     - stoichiometric_matrix
     - deriv_function
 - title: "Parsing"
-  desc: Network and network component parsing
+  desc: Reaction network and network component parsing
 - contents:
     - starts_with("parse_")
 - title: "Compiling"
 - contents:
     - compile_network
-- title: "Network strings"
-  desc: Example networks
+- title: "Examples"
 - contents:
-    - ends_with("_string")
+    - example_network_strings
 - title: "S3 methods"
 - contents:
     - species

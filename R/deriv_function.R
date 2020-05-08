@@ -1,4 +1,4 @@
-#' Generates a derivative function compatible with [`deSolve`](https://cran.r-project.org/web/packages/deSolve/index.html)
+#' Derivative function compatible with [`deSolve`](https://cran.r-project.org/web/packages/deSolve/index.html)
 #' 
 #' @param network a reaction network object created using [`parse_network`]
 #' 

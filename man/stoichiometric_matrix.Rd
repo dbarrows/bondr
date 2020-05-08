@@ -2,7 +2,7 @@
 % Please edit documentation in R/stoichiometric_matrix.R
 \name{stoichiometric_matrix}
 \alias{stoichiometric_matrix}
-\title{Generates the stoichiometric matrix for a reaction network}
+\title{Stoichiometric matrix for a reaction network}
 \usage{
 stoichiometric_matrix(network)
 }

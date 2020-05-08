@@ -2,7 +2,7 @@
 % Please edit documentation in R/propensity.R
 \name{propensities}
 \alias{propensities}
-\title{Generates the propensity functions for a reaction network}
+\title{Propensity functions for a reaction network}
 \usage{
 propensities(network, rateless = FALSE)
 }
@@ -15,5 +15,5 @@ propensities(network, rateless = FALSE)
 \code{\link{list}} of propensity functions
 }
 \description{
-Generates the propensity functions for a reaction network
+Propensity functions for a reaction network
 }
