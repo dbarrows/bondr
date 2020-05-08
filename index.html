@@ -153,14 +153,14 @@
 <span class="co">#&gt; {</span>
 <span class="co">#&gt;     2.5 * x[1]</span>
 <span class="co">#&gt; }</span>
-<span class="co">#&gt; &lt;environment: 0x7fc3ba45b180&gt;</span>
+<span class="co">#&gt; &lt;environment: 0x7ff136c8e320&gt;</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; [[2]]</span>
 <span class="co">#&gt; function (x) </span>
 <span class="co">#&gt; {</span>
 <span class="co">#&gt;     0.04 * x[2] * (x[2] - 1)/2 * x[3]</span>
 <span class="co">#&gt; }</span>
-<span class="co">#&gt; &lt;environment: 0x7fc3ba4d44f8&gt;</span></pre></div>
+<span class="co">#&gt; &lt;environment: 0x7ff136d03788&gt;</span></pre></div>
 <p>Note that dimerisations and multiple reactants are handled properly.</p>
 <p>Propensity functions take a state vector of species quantities, ordered according to the output of the <code>species</code> function.</p>
 <div class="sourceCode" id="cb8"><pre class="r"><span class="fu"><a href="reference/species.html">species</a></span>(<span class="no">network</span>)
@@ -175,7 +175,7 @@
 <h3 class="hasAnchor">
 <a href="#stoichiometric-matrix" class="anchor"></a>Stoichiometric matrix</h3>
 <p>A matrix that conveys how the system updates when reactions fire. The columns correspond to reactions, and the rows to species.</p>
-<div class="sourceCode" id="cb9"><pre class="r"><span class="no">mm_string</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/example_network_strings.html">example_network_strings</a></span>(<span class="st">"mm"</span>)
+<div class="sourceCode" id="cb9"><pre class="r"><span class="no">mm_string</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/network_string_example.html">network_string_example</a></span>(<span class="st">"mm"</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span>(<span class="no">mm_string</span>)
 <span class="co">#&gt; </span>
 <span class="co">#&gt; S + E &lt;-&gt; SE,    1.66e-3, 1e-4</span>
