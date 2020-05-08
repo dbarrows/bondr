@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Creates a reaction object from a string — parse_reaction • bondr</title>
+<title>Create a reaction — parse_reaction • bondr</title>
 
 
 <!-- jquery -->
@@ -41,9 +41,8 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Creates a reaction object from a string — parse_reaction" />
-<meta property="og:description" content="If the reaction string contains a bidirectional reaction, the returned
-list will contain both reaction objects." />
+<meta property="og:title" content="Create a reaction — parse_reaction" />
+<meta property="og:description" content="Parse a string to create a reaction network object." />
 
 
 
@@ -106,14 +105,13 @@ list will contain both reaction objects." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Creates a reaction object from a string</h1>
-    <small class="dont-index">Source: <a href='https://github.com/dbarrows/bondr/blob/master/R/reaction.R'><code>R/reaction.R</code></a></small>
+    <h1>Create a reaction</h1>
+    <small class="dont-index">Source: <a href='https://github.com/dbarrows/bondr/blob/master/R/reactions.R'><code>R/reactions.R</code></a></small>
     <div class="hidden name"><code>parse_reaction.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>If the reaction string contains a bidirectional reaction, the returned
-list will contain both reaction objects.</p>
+    <p>Parse a string to create a reaction network object.</p>
     </div>
 
     <pre class="usage"><span class='fu'>parse_reaction</span>(<span class='no'>string</span>)</pre>
@@ -130,6 +128,10 @@ list will contain both reaction objects.</p>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p><code><a href='https://rdrr.io/r/base/list.html'>list</a></code> of reaction objects</p>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>If the reaction string contains a bidirectional reaction, the returned
+list will contain both reaction objects.</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

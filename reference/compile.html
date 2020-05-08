@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Propensity functions — propensities • bondr</title>
+<title>Compiles a reaction network to a C++ object — compile • bondr</title>
 
 
 <!-- jquery -->
@@ -41,8 +41,10 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Propensity functions — propensities" />
-<meta property="og:description" content="Propensity functions" />
+<meta property="og:title" content="Compiles a reaction network to a C++ object — compile" />
+<meta property="og:description" content="The compiled network is exposed via an Xptr and can be used in cpp code via the Rcpp package.
+Make sure to link to this package using the LinkingTo field in the DESCRIPTION file of a
+package, or with Rcpp::depends in C++ code." />
 
 
 
@@ -105,16 +107,18 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Propensity functions</h1>
-    <small class="dont-index">Source: <a href='https://github.com/dbarrows/bondr/blob/master/R/propensities.R'><code>R/propensities.R</code></a></small>
-    <div class="hidden name"><code>propensities.Rd</code></div>
+    <h1>Compiles a reaction network to a C++ object</h1>
+    <small class="dont-index">Source: <a href='https://github.com/dbarrows/bondr/blob/master/R/compile.R'><code>R/compile.R</code></a></small>
+    <div class="hidden name"><code>compile.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Propensity functions</p>
+    <p>The compiled network is exposed via an <code>Xptr</code> and can be used in cpp code via the <code>Rcpp</code> package.
+Make sure to link to this package using the <code>LinkingTo</code> field in the <code>DESCRIPTION</code> file of a
+package, or with <a href='https://rdrr.io/rforge/Rcpp/man/dependsAttribute.html'><code>Rcpp::depends</code></a> in C++ code.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>propensities</span>(<span class='no'>network</span>, <span class='kw'>rateless</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>compile</span>(<span class='no'>network</span>, <span class='kw'>rateless</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>force</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>display_path</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -127,11 +131,19 @@
       <th>rateless</th>
       <td><p>if <code>TRUE</code> (default <code>FALSE</code>), generates propensities without using rate constants</p></td>
     </tr>
+    <tr>
+      <th>force</th>
+      <td><p>if <code>TRUE</code> (default <code>FALSE</code>), forces the overwriting and recompilation of the network source file</p></td>
+    </tr>
+    <tr>
+      <th>display_path</th>
+      <td><p>if <code>TRUE</code> (default <code>FALSE</code>), displays the path to the network file</p></td>
+    </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><code><a href='https://rdrr.io/r/base/list.html'>list</a></code> of propensity functions</p>
+    <p><code>Xptr</code> to a compiled network object</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

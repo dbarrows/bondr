@@ -7,10 +7,10 @@
     <loc>https://github.com/dbarrows/bondr/reference/bondr.html</loc>
   </url>
   <url>
-    <loc>https://github.com/dbarrows/bondr/reference/compile_network.html</loc>
+    <loc>https://github.com/dbarrows/bondr/reference/compile.html</loc>
   </url>
   <url>
-    <loc>https://github.com/dbarrows/bondr/reference/deriv_function.html</loc>
+    <loc>https://github.com/dbarrows/bondr/reference/deriv.html</loc>
   </url>
   <url>
     <loc>https://github.com/dbarrows/bondr/reference/network_string_example.html</loc>
@@ -31,7 +31,7 @@
     <loc>https://github.com/dbarrows/bondr/reference/species.html</loc>
   </url>
   <url>
-    <loc>https://github.com/dbarrows/bondr/reference/stoichiometric_matrix.html</loc>
+    <loc>https://github.com/dbarrows/bondr/reference/stmat.html</loc>
   </url>
   <url>
     <loc>https://github.com/dbarrows/bondr/reference/updates.html</loc>

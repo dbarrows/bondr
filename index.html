@@ -78,15 +78,15 @@
 <p>You write systems of reactions using a natural syntax, and bondr will parse it and turn it into an S3 object.</p>
 <div class="sourceCode" id="cb2"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">bondr</span>)
 
-(<span class="no">synthesis</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/parse_network.html">parse_network</a></span>(<span class="st">"A + B -&gt; C, 2.4e-5"</span>))
+(<span class="no">synthesis</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/parse_network.html">network</a></span>(<span class="st">"A + B -&gt; C, 2.4e-5"</span>))
 <span class="co">#&gt; # Reaction network: 1 reaction x 3 species</span>
-<span class="co">#&gt;     Reactants    Products    Rate</span>
-<span class="co">#&gt; 1       A + B -&gt; C         2.4e-5</span></pre></div>
+<span class="co">#&gt;     Reactants    Products     Rate</span>
+<span class="co">#&gt; 1       A + B -&gt; C         2.4e-05</span></pre></div>
 <div id="sources--sinks" class="section level3">
 <h3 class="hasAnchor">
 <a href="#sources--sinks" class="anchor"></a>Sources / sinks</h3>
 <p>You can specify sources / sinks using <code>0</code> as the species name.</p>
-<div class="sourceCode" id="cb3"><pre class="r"><span class="fu"><a href="reference/parse_network.html">parse_network</a></span>(<span class="st">"0 -&gt; A, 4"</span>)
+<div class="sourceCode" id="cb3"><pre class="r"><span class="fu"><a href="reference/parse_network.html">network</a></span>(<span class="st">"0 -&gt; A, 4"</span>)
 <span class="co">#&gt; # Reaction network: 1 reaction x 1 species</span>
 <span class="co">#&gt;     Reactants    Products  Rate</span>
 <span class="co">#&gt; 1           0 -&gt; A            4</span></pre></div>
@@ -99,27 +99,27 @@
     S + E -&gt; SE, 1.66e-3
     SE -&gt; E + P, 1e-1
 "</span>
-<span class="fu"><a href="reference/parse_network.html">parse_network</a></span>(<span class="no">network_string</span>)
+<span class="fu"><a href="reference/parse_network.html">network</a></span>(<span class="no">network_string</span>)
 <span class="co">#&gt; # Reaction network: 2 reactions x 4 species</span>
 <span class="co">#&gt;     Reactants    Products     Rate</span>
-<span class="co">#&gt; 1       S + E -&gt; SE        1.66e-3</span>
-<span class="co">#&gt; 2          SE -&gt; E + P        1e-1</span></pre></div>
+<span class="co">#&gt; 1       S + E -&gt; SE        0.00166</span>
+<span class="co">#&gt; 2          SE -&gt; E + P         0.1</span></pre></div>
 </div>
 <div id="bidirectional-reactions" class="section level3">
 <h3 class="hasAnchor">
 <a href="#bidirectional-reactions" class="anchor"></a>Bidirectional reactions</h3>
 <p>You can use <code>&lt;-&gt;</code> to indicate bidirectional reactions, with an additional rate specified at the end of the line.</p>
-<div class="sourceCode" id="cb5"><pre class="r"><span class="fu"><a href="reference/parse_network.html">parse_network</a></span>(<span class="st">"A &lt;-&gt; B, 1e-1, 2.2"</span>)
+<div class="sourceCode" id="cb5"><pre class="r"><span class="fu"><a href="reference/parse_network.html">network</a></span>(<span class="st">"A &lt;-&gt; B, 1e-1, 2.2"</span>)
 <span class="co">#&gt; # Reaction network: 2 reactions x 2 species</span>
 <span class="co">#&gt;     Reactants    Products  Rate</span>
-<span class="co">#&gt; 1           A -&gt; B         1e-1</span>
+<span class="co">#&gt; 1           A -&gt; B          0.1</span>
 <span class="co">#&gt; 2           B -&gt; A          2.2</span></pre></div>
 </div>
 <div id="species-orders" class="section level3">
 <h3 class="hasAnchor">
 <a href="#species-orders" class="anchor"></a>Species orders</h3>
 <p>Prefixing a species name with a number will be interpreted as a reaction coefficient.</p>
-<div class="sourceCode" id="cb6"><pre class="r"><span class="no">network</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/parse_network.html">parse_network</a></span>(<span class="st">"2A -&gt; B, 1e-1"</span>)
+<div class="sourceCode" id="cb6"><pre class="r"><span class="no">network</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/parse_network.html">network</a></span>(<span class="st">"2A -&gt; B, 1e-1"</span>)
 <span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span>(<span class="no">network</span>$<span class="no">reactions</span><span class="kw">[[</span><span class="fl">1</span>]])
 <span class="co">#&gt; List of 3</span>
 <span class="co">#&gt;  $ reactants:List of 1</span>
@@ -132,7 +132,7 @@
 <span class="co">#&gt;   .. ..$ name : chr "B"</span>
 <span class="co">#&gt;   .. ..$ order: num 1</span>
 <span class="co">#&gt;   .. ..- attr(*, "class")= chr "species"</span>
-<span class="co">#&gt;  $ rate     : chr "1e-1"</span>
+<span class="co">#&gt;  $ rate     : num 0.1</span>
 <span class="co">#&gt;  - attr(*, "class")= chr "reaction"</span></pre></div>
 </div>
 </div>
@@ -143,7 +143,7 @@
 <h3 class="hasAnchor">
 <a href="#propensity-functions" class="anchor"></a>Propensity functions</h3>
 <p>You can generate the propensity functions for a reaction network.</p>
-<div class="sourceCode" id="cb7"><pre class="r"><span class="no">network</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/parse_network.html">parse_network</a></span>(<span class="st">"
+<div class="sourceCode" id="cb7"><pre class="r"><span class="no">network</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/parse_network.html">network</a></span>(<span class="st">"
          A -&gt; B, 2.5
     2B + C -&gt; A, 4e-2
 "</span>)
@@ -153,14 +153,14 @@
 <span class="co">#&gt; {</span>
 <span class="co">#&gt;     2.5 * x[1]</span>
 <span class="co">#&gt; }</span>
-<span class="co">#&gt; &lt;environment: 0x7ff136c8e320&gt;</span>
+<span class="co">#&gt; &lt;environment: 0x7fbd6b7eaa90&gt;</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; [[2]]</span>
 <span class="co">#&gt; function (x) </span>
 <span class="co">#&gt; {</span>
 <span class="co">#&gt;     0.04 * x[2] * (x[2] - 1)/2 * x[3]</span>
 <span class="co">#&gt; }</span>
-<span class="co">#&gt; &lt;environment: 0x7ff136d03788&gt;</span></pre></div>
+<span class="co">#&gt; &lt;environment: 0x7fbd6c7d97d8&gt;</span></pre></div>
 <p>Note that dimerisations and multiple reactants are handled properly.</p>
 <p>Propensity functions take a state vector of species quantities, ordered according to the output of the <code>species</code> function.</p>
 <div class="sourceCode" id="cb8"><pre class="r"><span class="fu"><a href="reference/species.html">species</a></span>(<span class="no">network</span>)
@@ -180,13 +180,13 @@
 <span class="co">#&gt; </span>
 <span class="co">#&gt; S + E &lt;-&gt; SE,    1.66e-3, 1e-4</span>
 <span class="co">#&gt;    SE  -&gt; E + P, 1e-1</span>
-(<span class="no">network</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/parse_network.html">parse_network</a></span>(<span class="no">mm_string</span>))
+(<span class="no">network</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/parse_network.html">network</a></span>(<span class="no">mm_string</span>))
 <span class="co">#&gt; # Reaction network: 3 reactions x 4 species</span>
 <span class="co">#&gt;     Reactants    Products     Rate</span>
-<span class="co">#&gt; 1       S + E -&gt; SE        1.66e-3</span>
-<span class="co">#&gt; 2          SE -&gt; S + E        1e-4</span>
-<span class="co">#&gt; 3          SE -&gt; E + P        1e-1</span>
-<span class="fu"><a href="reference/stoichiometric_matrix.html">stoichiometric_matrix</a></span>(<span class="no">network</span>)
+<span class="co">#&gt; 1       S + E -&gt; SE        0.00166</span>
+<span class="co">#&gt; 2          SE -&gt; S + E       1e-04</span>
+<span class="co">#&gt; 3          SE -&gt; E + P         0.1</span>
+<span class="fu"><a href="reference/stmat.html">stmat</a></span>(<span class="no">network</span>)
 <span class="co">#&gt;      [,1] [,2] [,3]</span>
 <span class="co">#&gt; [1,]   -1    1    0</span>
 <span class="co">#&gt; [2,]   -1    1    1</span>
@@ -197,7 +197,7 @@
 <div id="solving" class="section level2">
 <h2 class="hasAnchor">
 <a href="#solving" class="anchor"></a>Solving</h2>
-<p><code>bondr</code> also provides a function <code>deriv_function</code> to get a derivative function compatible with the <code>deSolve</code> R package, which contains a number of numerical integrators.</p>
+<p><code>bondr</code> also provides a function <code>deriv</code> to get a derivative function compatible with the <code>deSolve</code> R package, which contains a number of numerical integrators.</p>
 <div id="using-desolve" class="section level3">
 <h3 class="hasAnchor">
 <a href="#using-desolve" class="anchor"></a>Using <code>deSolve</code>
@@ -207,7 +207,7 @@
 
 <span class="no">y</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="kw">S</span> <span class="kw">=</span> <span class="fl">300</span>, <span class="kw">E</span> <span class="kw">=</span> <span class="fl">120</span>, <span class="kw">SE</span> <span class="kw">=</span> <span class="fl">0</span>, <span class="kw">P</span> <span class="kw">=</span> <span class="fl">0</span>)
 <span class="no">times</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span>(<span class="fl">0</span>, <span class="fl">30</span>, <span class="kw">length.out</span> <span class="kw">=</span> <span class="fl">100</span>)
-<span class="no">func</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/deriv_function.html">deriv_function</a></span>(<span class="no">network</span>)
+<span class="no">func</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/deriv.html">deriv</a></span>(<span class="no">network</span>)
 
 <span class="no">sol</span> <span class="kw">&lt;-</span> <span class="fu">ode</span>(<span class="no">y</span>, <span class="no">times</span>, <span class="no">func</span>)
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">sol</span>)
@@ -224,7 +224,7 @@
 <a href="#plotting" class="anchor"></a>Plotting</h3>
 <p>You can then plot the solution using a few <code>tidyverse</code> functions fairly easily.</p>
 <div class="sourceCode" id="cb11"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">tidyverse</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">mplot</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">wplot</span>)
 
 <span class="no">sol</span> <span class="kw">%&gt;%</span>
     <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>() <span class="kw">%&gt;%</span>
@@ -232,7 +232,7 @@
     <span class="fu">pivot_longer</span>(<span class="fu"><a href="reference/species.html">species</a></span>(<span class="no">network</span>), <span class="kw">names_to</span> <span class="kw">=</span> <span class="st">"Species"</span>, <span class="kw">values_to</span> <span class="kw">=</span> <span class="st">"Quantity"</span>) <span class="kw">%&gt;%</span>
     <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="kw">x</span> <span class="kw">=</span> <span class="no">Time</span>, <span class="kw">y</span> <span class="kw">=</span> <span class="no">Quantity</span>, <span class="kw">colour</span> <span class="kw">=</span> <span class="no">Species</span>)) +
         <span class="fu">geom_line</span>() +
-        <span class="fu">theme_mc</span>()</pre></div>
+        <span class="fu">theme_wc</span>()</pre></div>
 <p><img src="reference/figures/README-unnamed-chunk-11-1.svg" width="100%"></p>
 </div>
 </div>
@@ -267,6 +267,7 @@
 <h2>Dev status</h2>
 <ul class="list-unstyled">
 <li><a href="https://github.com/dbarrows/bondr/actions"><img src="https://github.com/dbarrows/bondr/workflows/R-CMD-check/badge.svg" alt="R build status"></a></li>
+<li><a href="https://www.tidyverse.org/lifecycle/#experimental"><img src="https://img.shields.io/badge/lifecycle-experimental-orange.svg" alt="Lifecycle: experimental"></a></li>
 </ul>
 </div>
 </div>

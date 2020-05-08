@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Propensity functions — propensities • bondr</title>
+<title>Derivative function — deriv • bondr</title>
 
 
 <!-- jquery -->
@@ -41,8 +41,8 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Propensity functions — propensities" />
-<meta property="og:description" content="Propensity functions" />
+<meta property="og:title" content="Derivative function — deriv" />
+<meta property="og:description" content="Compatible with deSolve." />
 
 
 
@@ -105,16 +105,16 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Propensity functions</h1>
-    <small class="dont-index">Source: <a href='https://github.com/dbarrows/bondr/blob/master/R/propensities.R'><code>R/propensities.R</code></a></small>
-    <div class="hidden name"><code>propensities.Rd</code></div>
+    <h1>Derivative function</h1>
+    <small class="dont-index">Source: <a href='https://github.com/dbarrows/bondr/blob/master/R/deriv.R'><code>R/deriv.R</code></a></small>
+    <div class="hidden name"><code>deriv.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Propensity functions</p>
+    <p>Compatible with <a href='https://cran.r-project.org/web/packages/deSolve/index.html'><code>deSolve</code></a>.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>propensities</span>(<span class='no'>network</span>, <span class='kw'>rateless</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>deriv</span>(<span class='no'>network</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -123,15 +123,11 @@
       <th>network</th>
       <td><p>a reaction network object created using <code><a href='parse_network.html'>network</a></code></p></td>
     </tr>
-    <tr>
-      <th>rateless</th>
-      <td><p>if <code>TRUE</code> (default <code>FALSE</code>), generates propensities without using rate constants</p></td>
-    </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><code><a href='https://rdrr.io/r/base/list.html'>list</a></code> of propensity functions</p>
+    <p><code><a href='https://rdrr.io/r/base/function.html'>function</a></code> with the signature <code>function(t, y, parms, ...)</code></p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
