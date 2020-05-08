@@ -5,7 +5,7 @@
 #' @return Species object
 #' @export
 parse_species <- function(string) {
-    if (string %in% empty_sets) return(NA)
+    if (string %in% empty_sets) return(NULL)
 
     parsed_order <- str_extract(string, "^\\d+")
     order <- ifelse(is.na(parsed_order), 1, as.numeric(parsed_order))

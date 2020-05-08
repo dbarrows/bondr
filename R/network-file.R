@@ -1,34 +1,3 @@
-top_template <- '
-// [[Rcpp::depends(RcppArmadillo)]]
-
-#include "rnet.h"
-
-class NETWORK_NAME : public bondr::rnet {
-public:
-    NETWORK_NAME() {
-        species = { SPECIES };
-        reactions = {
-'
-
-reaction_template <- '
-            bondr::reaction {
-                ORDER,
-                [](const arma::vec& x) -> double { return PROPENSITY; },
-                [](arma::vec& x) { UPDATES }
-            },
-'
-
-bottom_template <- '
-        };
-    };
-};
-
-// [[Rcpp::export()]]
-SEXP CONSTRUCTOR_NAME() {
-    return Rcpp::XPtr<bondr::rnet>(new NETWORK_NAME());
-}
-'
-
 network_file <- function(network, rateless = FALSE, force = FALSE) {
     name <- str_c("network_", digest(list(network, rateless)))
 
@@ -79,3 +48,36 @@ network_file <- function(network, rateless = FALSE, force = FALSE) {
         class = "network_file"
     )
 }
+
+top_template <- '
+// [[Rcpp::depends(RcppArmadillo)]]
+
+#include <rnet.h>
+
+using namespace arma;
+
+class NETWORK_NAME : public bondr::rnet {
+public:
+    NETWORK_NAME() {
+        species = { SPECIES };
+        reactions = {
+'
+
+reaction_template <- '
+            bondr::reaction {
+                ORDER,
+                [](const vec& x) -> double { return PROPENSITY; },
+                [](vec& x) { UPDATES }
+            },
+'
+
+bottom_template <- '
+        };
+    };
+};
+
+// [[Rcpp::export()]]
+SEXP CONSTRUCTOR_NAME() {
+    return Rcpp::XPtr<bondr::rnet>(new NETWORK_NAME());
+}
+'
