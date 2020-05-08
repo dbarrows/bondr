@@ -16,8 +16,8 @@ reference:
 - contents:
     - propensities
     - updates
-    - stoichiometric_matrix
-    - deriv_function
+    - stmat
+    - deriv
 - title: "Parsing"
   desc: Reaction network and network component parsing
 - contents:

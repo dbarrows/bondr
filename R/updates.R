@@ -1,4 +1,4 @@
-#' Update functions to use for the reaction network
+#' Update functions
 #' 
 #' @param network a reaction network object created using [`network`]
 #' 

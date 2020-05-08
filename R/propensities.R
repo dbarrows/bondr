@@ -1,4 +1,4 @@
-#' Propensity functions for a reaction network
+#' Propensity functions
 #' 
 #' @param network a reaction network object created using [`network`]
 #' @param rateless if `TRUE` (default `FALSE`), generates propensities without using rate constants
@@ -24,8 +24,8 @@ propensity_snippet <- function(reaction, all_species, rateless = FALSE, cpp = FA
             }
             prod
         })
-    x_mul <- paste(x, collapse = "*")
-    ifelse(str_length(x_mul) == 0, r, paste(c(r, "*", x_mul), collapse = ""))
+    x_mul <- paste0(x, collapse = "*")
+    ifelse(str_length(x_mul) == 0, r, paste0(c(r, "*", x_mul), collapse = ""))
 }
 
 propensity_function <- function(reaction, all_species, rateless = FALSE) {

@@ -2,7 +2,7 @@
 % Please edit documentation in R/species.R
 \name{parse_species}
 \alias{parse_species}
-\title{Creates a species object from a string}
+\title{Create a species}
 \usage{
 parse_species(string)
 }
@@ -13,5 +13,5 @@ parse_species(string)
 Species object
 }
 \description{
-Creates a species object from a string
+Parse a string to create a reaction network object.
 }

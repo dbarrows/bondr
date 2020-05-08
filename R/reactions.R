@@ -1,4 +1,6 @@
-#' Creates a reaction object from a string
+#' Create a reaction
+#' 
+#' Parse a string to create a reaction network object.
 #' 
 #' If the reaction string contains a bidirectional reaction, the returned
 #' list will contain both reaction objects.

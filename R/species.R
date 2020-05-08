@@ -1,4 +1,6 @@
-#' Creates a species object from a string
+#' Create a species
+#' 
+#' Parse a string to create a reaction network object.
 #'
 #' @param string string containing the chemical species representation
 #' 

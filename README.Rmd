@@ -115,12 +115,12 @@ A matrix that conveys how the system updates when reactions fire. The columns co
 mm_string <- network_string_example("mm")
 cat(mm_string)
 (network <- network(mm_string))
-stoichiometric_matrix(network)
+stmat(network)
 ```
 
 ## Solving
 
-`bondr` also provides a function `deriv_function` to get a derivative function compatible with the `deSolve` R package, which contains a number of numerical integrators.
+`bondr` also provides a function `deriv` to get a derivative function compatible with the `deSolve` R package, which contains a number of numerical integrators.
 
 ### Using `deSolve`
 
@@ -131,7 +131,7 @@ library(deSolve)
 
 y <- c(S = 300, E = 120, SE = 0, P = 0)
 times <- seq(0, 30, length.out = 100)
-func <- deriv_function(network)
+func <- deriv(network)
 
 sol <- ode(y, times, func)
 head(sol)
@@ -143,7 +143,7 @@ You can then plot the solution using a few `tidyverse` functions fairly easily.
 
 ```{r}
 library(tidyverse)
-library(mplot)
+library(wplot)
 
 sol %>%
     data.frame() %>%
@@ -151,5 +151,5 @@ sol %>%
     pivot_longer(species(network), names_to = "Species", values_to = "Quantity") %>%
     ggplot(aes(x = Time, y = Quantity, colour = Species)) +
         geom_line() +
-        theme_mc()
+        theme_wc()
 ```

@@ -6,7 +6,7 @@ source("utils.R")
 
 test_that("Network Parsing", {
     expect_equal(
-        parse_network("A -> B, 1"),
+        network("A -> B, 1"),
         make_network(list(make_reaction(
             list(make_species("A")),
             list(make_species("B")),
@@ -14,14 +14,14 @@ test_that("Network Parsing", {
         )))
     )
     expect_equal(
-        parse_network("A <-> B, 1, 2"),
-        parse_network("
+        network("A <-> B, 1, 2"),
+        network("
             A -> B, 1
             B -> A, 2
         ")
     )
     expect_equal(
-        parse_network("
+        network("
             A <-> B, 1, 2
             0  -> A, 0.5 
         "),

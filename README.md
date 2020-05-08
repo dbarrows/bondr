@@ -116,14 +116,14 @@ network <- network("
 #> {
 #>     2.5 * x[1]
 #> }
-#> <environment: 0x7ff938325078>
+#> <environment: 0x7fbd6b7eaa90>
 #> 
 #> [[2]]
 #> function (x) 
 #> {
 #>     0.04 * x[2] * (x[2] - 1)/2 * x[3]
 #> }
-#> <environment: 0x7ff93839e380>
+#> <environment: 0x7fbd6c7d97d8>
 ```
 
 Note that dimerisations and multiple reactants are handled properly.
@@ -158,7 +158,7 @@ cat(mm_string)
 #> 1       S + E -> SE        0.00166
 #> 2          SE -> S + E       1e-04
 #> 3          SE -> E + P         0.1
-stoichiometric_matrix(network)
+stmat(network)
 #>      [,1] [,2] [,3]
 #> [1,]   -1    1    0
 #> [2,]   -1    1    1
@@ -168,9 +168,9 @@ stoichiometric_matrix(network)
 
 ## Solving
 
-`bondr` also provides a function `deriv_function` to get a derivative
-function compatible with the `deSolve` R package, which contains a
-number of numerical integrators.
+`bondr` also provides a function `deriv` to get a derivative function
+compatible with the `deSolve` R package, which contains a number of
+numerical integrators.
 
 ### Using `deSolve`
 
@@ -182,7 +182,7 @@ library(deSolve)
 
 y <- c(S = 300, E = 120, SE = 0, P = 0)
 times <- seq(0, 30, length.out = 100)
-func <- deriv_function(network)
+func <- deriv(network)
 
 sol <- ode(y, times, func)
 head(sol)
@@ -202,7 +202,7 @@ easily.
 
 ``` r
 library(tidyverse)
-library(mplot)
+library(wplot)
 
 sol %>%
     data.frame() %>%
@@ -210,7 +210,7 @@ sol %>%
     pivot_longer(species(network), names_to = "Species", values_to = "Quantity") %>%
     ggplot(aes(x = Time, y = Quantity, colour = Species)) +
         geom_line() +
-        theme_mc()
+        theme_wc()
 ```
 
 <img src="man/figures/README-unnamed-chunk-11-1.svg" width="100%" />

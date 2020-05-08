@@ -1,4 +1,4 @@
-#' Stoichiometric matrix for a reaction network
+#' Stoichiometric matrix
 #' 
 #' Columns correspond to reactions, rows to species.
 #' 
@@ -6,7 +6,7 @@
 #' 
 #' @return Stoichiometric [`matrix`]
 #' @export
-stoichiometric_matrix <- function(network) {
+stmat <- function(network) {
     zero_vec <- numeric(length(species(network)))
     updates(network) %>% sapply(function(up) up(zero_vec))
 }
