@@ -1,6 +1,6 @@
-#' \code{bondr} package
+#' [bondr] package
 #'
-#' Chemical Reaction Networks
+#' Chemical reaction networks
 #'
 #' @docType package
 #' @name bondr

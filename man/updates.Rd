@@ -2,16 +2,16 @@
 % Please edit documentation in R/update.R
 \name{updates}
 \alias{updates}
-\title{Generates the update functions to use for the reaction network.}
+\title{Generates the update functions to use for the reaction network}
 \usage{
 updates(network)
 }
 \arguments{
-\item{network}{a reaction network object created using \code{parse_network}}
+\item{network}{a reaction network object created using \code{\link{parse_network}}}
 }
 \value{
 a list of update functions
 }
 \description{
-Generates the update functions to use for the reaction network.
+Generates the update functions to use for the reaction network
 }

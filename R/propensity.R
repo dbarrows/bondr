@@ -1,7 +1,7 @@
-#' Generates the propensity functions to use for the reaction network.
+#' Generates the propensity functions for a reaction network
 #' 
-#' @param network a reaction network object created using \code{parse_network}
-#' @param rateless if \code{TRUE} (default \code{FALSE}), generates propensities without using rate constants
+#' @param network a reaction network object created using [`parse_network`]
+#' @param rateless if `TRUE` (default `FALSE`), generates propensities without using rate constants
 #' 
 #' @return a list of propensity functions
 #' @export

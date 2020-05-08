@@ -1,8 +1,8 @@
 #' Generates the stoichiometric matrix for a reaction network
 #' 
-#' Columns correspond to reactions, and rows to species
+#' Columns correspond to reactions, rows to species.
 #' 
-#' @param network a reaction network object created using \code{parse_network}
+#' @param network a reaction network object created using [`parse_network`]
 #' 
 #' @return stoichiometric matrix
 #' @export

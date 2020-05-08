@@ -2,12 +2,12 @@
 % Please edit documentation in R/compile.R
 \name{compile_network}
 \alias{compile_network}
-\title{Compiles a reaction network to a C++ object.}
+\title{Compiles a reaction network to a C++ object}
 \usage{
 compile_network(network, rateless = FALSE, force = FALSE, display_path = FALSE)
 }
 \arguments{
-\item{network}{a reaction network object created using \code{parse_network}}
+\item{network}{a reaction network object created using \code{\link{parse_network}}}
 
 \item{rateless}{if \code{TRUE} (default \code{FALSE}), generates propensities without using rate constants}
 
@@ -19,7 +19,7 @@ compile_network(network, rateless = FALSE, force = FALSE, display_path = FALSE)
 \code{Xptr} to a compiled network object
 }
 \description{
-The compiled network is exposed via an \code{Xptr} and can be used in cpp code via the Rcpp package.
-Make sure to link to this package using the \code{LinkingTo} field in the DESCRIPTION file of a
-package, or with \code{Rcpp::depends} in C++ code.
+The compiled network is exposed via an \code{Xptr} and can be used in cpp code via the \code{\link{Rcpp}} package.
+Make sure to link to this package using the \code{LinkingTo} field in the \code{DESCRIPTION} file of a
+package, or with \href{https://rdrr.io/rforge/Rcpp/man/dependsAttribute.html}{\code{Rcpp::depends}} in C++ code.
 }

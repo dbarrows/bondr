@@ -2,12 +2,12 @@
 % Please edit documentation in R/propensity.R
 \name{propensities}
 \alias{propensities}
-\title{Generates the propensity functions to use for the reaction network.}
+\title{Generates the propensity functions for a reaction network}
 \usage{
 propensities(network, rateless = FALSE)
 }
 \arguments{
-\item{network}{a reaction network object created using \code{parse_network}}
+\item{network}{a reaction network object created using \code{\link{parse_network}}}
 
 \item{rateless}{if \code{TRUE} (default \code{FALSE}), generates propensities without using rate constants}
 }
@@ -15,5 +15,5 @@ propensities(network, rateless = FALSE)
 a list of propensity functions
 }
 \description{
-Generates the propensity functions to use for the reaction network.
+Generates the propensity functions for a reaction network
 }

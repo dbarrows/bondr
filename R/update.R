@@ -1,6 +1,6 @@
-#' Generates the update functions to use for the reaction network.
+#' Generates the update functions to use for the reaction network
 #' 
-#' @param network a reaction network object created using \code{parse_network}
+#' @param network a reaction network object created using [`parse_network`]
 #' 
 #' @return a list of update functions
 #' @export

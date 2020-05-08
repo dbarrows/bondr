@@ -1,8 +1,8 @@
-#' Generates a derivative function compatible with solvers in the \code{deSolve} package
+#' Generates a derivative function compatible with [`deSolve`](https://cran.r-project.org/web/packages/deSolve/index.html)
 #' 
-#' @param network a reaction network object created using \code{parse_network}
+#' @param network a reaction network object created using [`parse_network`]
 #' 
-#' @return a function with the signature \code{function(t, y, parms, ...)}
+#' @return [`function`] with the signature `function(t, y, parms, ...)`
 #' @export
 deriv_function <- function(network) {
     n_species <- length(species(network))

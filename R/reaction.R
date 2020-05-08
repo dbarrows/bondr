@@ -1,5 +1,4 @@
-#' Parses a string containing a representation of a unidirectional
-#' or bidirectional chemical reaction
+#' Parses a string containing a representation of a chemical reaction
 #' 
 #' If the reaction string contains a bidirectional reaction, the returned
 #' list will contain both reaction objects.

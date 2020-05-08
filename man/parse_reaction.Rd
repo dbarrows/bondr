@@ -2,8 +2,7 @@
 % Please edit documentation in R/reaction.R
 \name{parse_reaction}
 \alias{parse_reaction}
-\title{Parses a string containing a representation of a unidirectional
-or bidirectional chemical reaction}
+\title{Parses a string containing a representation of a chemical reaction}
 \usage{
 parse_reaction(string)
 }

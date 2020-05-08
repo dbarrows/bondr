@@ -7,11 +7,11 @@
 stoichiometric_matrix(network)
 }
 \arguments{
-\item{network}{a reaction network object created using \code{parse_network}}
+\item{network}{a reaction network object created using \code{\link{parse_network}}}
 }
 \value{
 stoichiometric matrix
 }
 \description{
-Columns correspond to reactions, and rows to species
+Columns correspond to reactions, rows to species.
 }
