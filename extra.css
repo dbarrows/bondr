@@ -59,7 +59,7 @@ a:link {
 p > a,
 p > a:hover,
 #pkgdown-sidebar a,
-td:nth-child(1) > p > code > a {
+code > a {
     color: #000000;
     text-decoration: underline;
 }
