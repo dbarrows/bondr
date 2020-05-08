@@ -13,6 +13,9 @@ parse_network <- function(string) {
         class = "network"
     )
 }
+#' @rdname parse_network
+#' @export
+network <- parse_network
 
 #' @export
 species.network <- function(x) {

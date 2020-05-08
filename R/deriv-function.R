@@ -1,6 +1,6 @@
 #' Derivative function compatible with [`deSolve`](https://cran.r-project.org/web/packages/deSolve/index.html)
 #' 
-#' @param network a reaction network object created using [`parse_network`]
+#' @param network a reaction network object created using [`network`]
 #' 
 #' @return [`function`] with the signature `function(t, y, parms, ...)`
 #' @export

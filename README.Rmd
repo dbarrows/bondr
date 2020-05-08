@@ -23,6 +23,7 @@ knitr::opts_chunk$set(
 
 <!-- badges: start -->
 [![R build status](https://github.com/dbarrows/bondr/workflows/R-CMD-check/badge.svg)](https://github.com/dbarrows/bondr/actions)
+[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 <!-- badges: end -->
 
 Provides utilities and classes for working with reaction networks in R.
@@ -41,7 +42,7 @@ You write systems of reactions using a natural syntax, and bondr will parse it a
 ```{r}
 library(bondr)
 
-(synthesis <- parse_network("A + B -> C, 2.4e-5"))
+(synthesis <- network("A + B -> C, 2.4e-5"))
 ```
 
 ### Sources / sinks
@@ -49,7 +50,7 @@ library(bondr)
 You can specify sources / sinks using `0` as the species name.
 
 ```{r}
-parse_network("0 -> A, 4")
+network("0 -> A, 4")
 ```
 
 ### Multiple reactions
@@ -61,7 +62,7 @@ network_string <- "
     S + E -> SE, 1.66e-3
     SE -> E + P, 1e-1
 "
-parse_network(network_string)
+network(network_string)
 ```
 
 ### Bidirectional reactions
@@ -69,7 +70,7 @@ parse_network(network_string)
 You can use `<->` to indicate bidirectional reactions, with an additional rate specified at the end of the line.
 
 ```{r}
-parse_network("A <-> B, 1e-1, 2.2")
+network("A <-> B, 1e-1, 2.2")
 ```
 
 ### Species orders
@@ -77,7 +78,7 @@ parse_network("A <-> B, 1e-1, 2.2")
 Prefixing a species name with a number will be interpreted as a reaction coefficient.
 
 ```{r}
-network <- parse_network("2A -> B, 1e-1")
+network <- network("2A -> B, 1e-1")
 str(network$reactions[[1]])
 ```
 
@@ -88,7 +89,7 @@ str(network$reactions[[1]])
 You can generate the propensity functions for a reaction network.
 
 ```{r}
-network <- parse_network("
+network <- network("
          A -> B, 2.5
     2B + C -> A, 4e-2
 ")
@@ -113,7 +114,7 @@ A matrix that conveys how the system updates when reactions fire. The columns co
 ```{r}
 mm_string <- network_string_example("mm")
 cat(mm_string)
-(network <- parse_network(mm_string))
+(network <- network(mm_string))
 stoichiometric_matrix(network)
 ```
 

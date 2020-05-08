@@ -2,9 +2,12 @@
 % Please edit documentation in R/network.R
 \name{parse_network}
 \alias{parse_network}
+\alias{network}
 \title{Creates a reaction network object from a string}
 \usage{
 parse_network(string)
+
+network(string)
 }
 \arguments{
 \item{string}{string containing the chemical network representation}

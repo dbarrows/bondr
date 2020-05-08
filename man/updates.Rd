@@ -7,7 +7,7 @@
 updates(network)
 }
 \arguments{
-\item{network}{a reaction network object created using \code{\link{parse_network}}}
+\item{network}{a reaction network object created using \code{\link{network}}}
 }
 \value{
 \code{\link{list}} of update functions

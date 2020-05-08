@@ -2,7 +2,7 @@
 #' 
 #' Columns correspond to reactions, rows to species.
 #' 
-#' @param network a reaction network object created using [`parse_network`]
+#' @param network a reaction network object created using [`network`]
 #' 
 #' @return Stoichiometric [`matrix`]
 #' @export

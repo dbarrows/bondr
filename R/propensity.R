@@ -1,6 +1,6 @@
 #' Propensity functions for a reaction network
 #' 
-#' @param network a reaction network object created using [`parse_network`]
+#' @param network a reaction network object created using [`network`]
 #' @param rateless if `TRUE` (default `FALSE`), generates propensities without using rate constants
 #' 
 #' @return [`list`] of propensity functions

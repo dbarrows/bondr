@@ -7,7 +7,7 @@
 propensities(network, rateless = FALSE)
 }
 \arguments{
-\item{network}{a reaction network object created using \code{\link{parse_network}}}
+\item{network}{a reaction network object created using \code{\link{network}}}
 
 \item{rateless}{if \code{TRUE} (default \code{FALSE}), generates propensities without using rate constants}
 }

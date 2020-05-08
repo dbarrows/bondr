@@ -7,6 +7,8 @@
 
 [![R build
 status](https://github.com/dbarrows/bondr/workflows/R-CMD-check/badge.svg)](https://github.com/dbarrows/bondr/actions)
+[![Lifecycle:
+experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 <!-- badges: end -->
 
 Provides utilities and classes for working with reaction networks in R.
@@ -28,10 +30,10 @@ parse it and turn it into an S3 object.
 ``` r
 library(bondr)
 
-(synthesis <- parse_network("A + B -> C, 2.4e-5"))
+(synthesis <- network("A + B -> C, 2.4e-5"))
 #> # Reaction network: 1 reaction x 3 species
-#>     Reactants    Products    Rate
-#> 1       A + B -> C         2.4e-5
+#>     Reactants    Products     Rate
+#> 1       A + B -> C         2.4e-05
 ```
 
 ### Sources / sinks
@@ -39,7 +41,7 @@ library(bondr)
 You can specify sources / sinks using `0` as the species name.
 
 ``` r
-parse_network("0 -> A, 4")
+network("0 -> A, 4")
 #> # Reaction network: 1 reaction x 1 species
 #>     Reactants    Products  Rate
 #> 1           0 -> A            4
@@ -54,11 +56,11 @@ network_string <- "
     S + E -> SE, 1.66e-3
     SE -> E + P, 1e-1
 "
-parse_network(network_string)
+network(network_string)
 #> # Reaction network: 2 reactions x 4 species
 #>     Reactants    Products     Rate
-#> 1       S + E -> SE        1.66e-3
-#> 2          SE -> E + P        1e-1
+#> 1       S + E -> SE        0.00166
+#> 2          SE -> E + P         0.1
 ```
 
 ### Bidirectional reactions
@@ -67,10 +69,10 @@ You can use `<->` to indicate bidirectional reactions, with an
 additional rate specified at the end of the line.
 
 ``` r
-parse_network("A <-> B, 1e-1, 2.2")
+network("A <-> B, 1e-1, 2.2")
 #> # Reaction network: 2 reactions x 2 species
 #>     Reactants    Products  Rate
-#> 1           A -> B         1e-1
+#> 1           A -> B          0.1
 #> 2           B -> A          2.2
 ```
 
@@ -80,7 +82,7 @@ Prefixing a species name with a number will be interpreted as a reaction
 coefficient.
 
 ``` r
-network <- parse_network("2A -> B, 1e-1")
+network <- network("2A -> B, 1e-1")
 str(network$reactions[[1]])
 #> List of 3
 #>  $ reactants:List of 1
@@ -93,7 +95,7 @@ str(network$reactions[[1]])
 #>   .. ..$ name : chr "B"
 #>   .. ..$ order: num 1
 #>   .. ..- attr(*, "class")= chr "species"
-#>  $ rate     : chr "1e-1"
+#>  $ rate     : num 0.1
 #>  - attr(*, "class")= chr "reaction"
 ```
 
@@ -104,7 +106,7 @@ str(network$reactions[[1]])
 You can generate the propensity functions for a reaction network.
 
 ``` r
-network <- parse_network("
+network <- network("
          A -> B, 2.5
     2B + C -> A, 4e-2
 ")
@@ -114,14 +116,14 @@ network <- parse_network("
 #> {
 #>     2.5 * x[1]
 #> }
-#> <environment: 0x7ff136c8e320>
+#> <environment: 0x7ff938325078>
 #> 
 #> [[2]]
 #> function (x) 
 #> {
 #>     0.04 * x[2] * (x[2] - 1)/2 * x[3]
 #> }
-#> <environment: 0x7ff136d03788>
+#> <environment: 0x7ff93839e380>
 ```
 
 Note that dimerisations and multiple reactants are handled properly.
@@ -150,12 +152,12 @@ cat(mm_string)
 #> 
 #> S + E <-> SE,    1.66e-3, 1e-4
 #>    SE  -> E + P, 1e-1
-(network <- parse_network(mm_string))
+(network <- network(mm_string))
 #> # Reaction network: 3 reactions x 4 species
 #>     Reactants    Products     Rate
-#> 1       S + E -> SE        1.66e-3
-#> 2          SE -> S + E        1e-4
-#> 3          SE -> E + P        1e-1
+#> 1       S + E -> SE        0.00166
+#> 2          SE -> S + E       1e-04
+#> 3          SE -> E + P         0.1
 stoichiometric_matrix(network)
 #>      [,1] [,2] [,3]
 #> [1,]   -1    1    0

@@ -24,7 +24,7 @@ reference:
     - starts_with("parse_")
 - title: "Compiling"
 - contents:
-    - compile_network
+    - compile
 - title: "Examples"
 - contents:
     - network_string_example
