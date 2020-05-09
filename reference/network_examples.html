@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • bondr</title>
+<title>Example networks — network_examples • bondr</title>
 
 
 <!-- jquery -->
@@ -41,7 +41,8 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Function reference" />
+<meta property="og:title" content="Example networks — network_examples" />
+<meta property="og:description" content="Example networks" />
 
 
 
@@ -60,7 +61,7 @@
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -108,154 +109,33 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Reference</h1>
+    <h1>Example networks</h1>
+    <small class="dont-index">Source: <a href='https://github.com/dbarrows/bondr/blob/master/R/network-examples.R'><code>R/network-examples.R</code></a></small>
+    <div class="hidden name"><code>network_examples.Rd</code></div>
     </div>
 
-    <table class="ref-index">
+    <div class="ref-description">
+    <p>Example networks</p>
+    </div>
 
-    <colgroup>
-      
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
+    <pre class="usage"><span class='fu'>network_examples</span>(<span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
 
-    <tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-networks" class="hasAnchor"><a href="#section-networks" class="anchor"></a>Networks</h2>
-          <p class="section-desc"><p>Reaction network derived properties</p></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      <tr>
-        
-        <td>
-          <p><code><a href="propensities.html">propensities()</a></code> </p>
-        </td>
-        <td><p>Propensity functions</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="updates.html">updates()</a></code> </p>
-        </td>
-        <td><p>Update functions</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="stmat.html">stmat()</a></code> </p>
-        </td>
-        <td><p>Stoichiometric matrix</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="deriv.html">deriv()</a></code> </p>
-        </td>
-        <td><p>Derivative function</p></td>
-      </tr>
-    </tbody><tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-parsing" class="hasAnchor"><a href="#section-parsing" class="anchor"></a>Parsing</h2>
-          <p class="section-desc"><p>Reaction network and network component parsing</p></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      <tr>
-        
-        <td>
-          <p><code><a href="parse_network.html">parse_network()</a></code> <code><a href="parse_network.html">network()</a></code> </p>
-        </td>
-        <td><p>Create a reaction network</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="parse_reaction.html">parse_reaction()</a></code> </p>
-        </td>
-        <td><p>Create a reaction</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="parse_species.html">parse_species()</a></code> </p>
-        </td>
-        <td><p>Create a species</p></td>
-      </tr>
-    </tbody><tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-compiling" class="hasAnchor"><a href="#section-compiling" class="anchor"></a>Compiling</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      <tr>
-        
-        <td>
-          <p><code><a href="compile.html">compile()</a></code> </p>
-        </td>
-        <td><p>Compiles a reaction network to a C++ object</p></td>
-      </tr>
-    </tbody><tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-examples" class="hasAnchor"><a href="#section-examples" class="anchor"></a>Examples</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      <tr>
-        
-        <td>
-          <p><code><a href="network_examples.html">network_examples()</a></code> </p>
-        </td>
-        <td><p>Example networks</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="network_string_examples.html">network_string_examples()</a></code> </p>
-        </td>
-        <td><p>Example network strings</p></td>
-      </tr>
-    </tbody><tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-s-methods" class="hasAnchor"><a href="#section-s-methods" class="anchor"></a>S3 methods</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      <tr>
-        
-        <td>
-          <p><code><a href="species.html">species()</a></code> </p>
-        </td>
-        <td><p>species</p></td>
-      </tr>
-    </tbody>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>name</th>
+      <td><p>one of: <code>'mm'</code> (default, Michaelis Menten), <code>'shlogl'</code>, <code>'gbk'</code> (Goldbeter-Koshland Switch), or <code>'pc'</code> (Potassium Channel)</p></td>
+    </tr>
     </table>
-  </div>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>Reaction <code><a href='parse_network.html'>network</a></code></p>
+
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
       <h2 data-toc-skip>Contents</h2>
