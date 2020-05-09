@@ -37,18 +37,24 @@
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
+      <ul class="nav navbar-nav"></ul>
+<ul class="nav navbar-nav navbar-right">
+<li>
+  <a href="reference/index.html">Reference</a>
+</li>
+<li>
+  <a href="index.html">
+    <span class="fas fa fas fa-home fa-lg"></span>
+     
+  </a>
+</li>
 <li>
   <a href="https://github.com/dbarrows/bondr/">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
 </li>
-<li>
-  <a href="reference/index.html">Reference</a>
-</li>
       </ul>
-<ul class="nav navbar-nav navbar-right"></ul>
 </div>
 <!--/.nav-collapse -->
   </div>
@@ -153,14 +159,14 @@
 <span class="co">#&gt; {</span>
 <span class="co">#&gt;     2.5 * x[1]</span>
 <span class="co">#&gt; }</span>
-<span class="co">#&gt; &lt;environment: 0x7fbd6b7eaa90&gt;</span>
+<span class="co">#&gt; &lt;environment: 0x7fa9954b13a8&gt;</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; [[2]]</span>
 <span class="co">#&gt; function (x) </span>
 <span class="co">#&gt; {</span>
 <span class="co">#&gt;     0.04 * x[2] * (x[2] - 1)/2 * x[3]</span>
 <span class="co">#&gt; }</span>
-<span class="co">#&gt; &lt;environment: 0x7fbd6c7d97d8&gt;</span></pre></div>
+<span class="co">#&gt; &lt;environment: 0x7fa9955268f0&gt;</span></pre></div>
 <p>Note that dimerisations and multiple reactants are handled properly.</p>
 <p>Propensity functions take a state vector of species quantities, ordered according to the output of the <code>species</code> function.</p>
 <div class="sourceCode" id="cb8"><pre class="r"><span class="fu"><a href="reference/species.html">species</a></span>(<span class="no">network</span>)
