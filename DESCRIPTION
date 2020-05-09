@@ -8,7 +8,7 @@ Authors@R:
            email = "dexter@barrows.io",
            comment = c(ORCID = "0000-0001-8169-8938"))
 Description: Provides support for a natural, string-based, representation of chemical networks, which can be compiled into C++ objects for use in solvers.
-URL: https://github.com/dbarrows/bondr
+URL: https://dexter.barrows.io/bondr, https://github.com/dbarrows/bondr
 BugReports: https://github.com/dbarrows/bondr/issues
 License: MIT + file LICENSE
 Encoding: UTF-8
