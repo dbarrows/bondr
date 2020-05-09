@@ -116,14 +116,14 @@ network <- network("
 #> {
 #>     2.5 * x[1]
 #> }
-#> <environment: 0x7fbd6b7eaa90>
+#> <environment: 0x7fa9954b13a8>
 #> 
 #> [[2]]
 #> function (x) 
 #> {
 #>     0.04 * x[2] * (x[2] - 1)/2 * x[3]
 #> }
-#> <environment: 0x7fbd6c7d97d8>
+#> <environment: 0x7fa9955268f0>
 ```
 
 Note that dimerisations and multiple reactants are handled properly.

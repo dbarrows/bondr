@@ -394,18 +394,6 @@
       "Repository": "CRAN",
       "Hash": "5a10316936c16bb3b341f687c9ac0fff"
     },
-    "mplot": {
-      "Package": "mplot",
-      "Version": "0.0.0.9000",
-      "Source": "GitHub",
-      "RemoteType": "github",
-      "RemoteHost": "api.github.com",
-      "RemoteRepo": "mplot",
-      "RemoteUsername": "dbarrows",
-      "RemoteRef": "master",
-      "RemoteSha": "3497a392b2281b2da0f159ca90dd8385d7a344b1",
-      "Hash": "19846051c8c21d8f83c6a5d4260b58b1"
-    },
     "munsell": {
       "Package": "munsell",
       "Version": "0.5.0",
@@ -506,10 +494,10 @@
     },
     "ps": {
       "Package": "ps",
-      "Version": "1.3.2",
+      "Version": "1.3.3",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "98777535b61c57d1749344345e2a4ccd"
+      "Hash": "425d938eb9c02906a8ac98c0c2a306b5"
     },
     "purrr": {
       "Package": "purrr",
@@ -660,10 +648,10 @@
     },
     "sysfonts": {
       "Package": "sysfonts",
-      "Version": "0.8",
+      "Version": "0.8.1",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "dcae252f838195aaae0c5ac1b27a7545"
+      "Hash": "49ed30f4a8938fb04551dced5b6d444e"
     },
     "systemfonts": {
       "Package": "systemfonts",
@@ -748,6 +736,18 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "ecd17882a0b4419545691e095b74ee89"
+    },
+    "wplot": {
+      "Package": "wplot",
+      "Version": "0.0.0.9000",
+      "Source": "GitHub",
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteRepo": "wplot",
+      "RemoteUsername": "dbarrows",
+      "RemoteRef": "master",
+      "RemoteSha": "9c9c72dedf41e101c6a9ee68ffa86f7fe5da7676",
+      "Hash": "69c1c74c626ecc23234ce54ce30f3c3b"
     },
     "xfun": {
       "Package": "xfun",
