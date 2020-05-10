@@ -159,14 +159,14 @@
 <span class="co">#&gt; {</span>
 <span class="co">#&gt;     2.5 * x[1]</span>
 <span class="co">#&gt; }</span>
-<span class="co">#&gt; &lt;environment: 0x7fa9954b13a8&gt;</span>
+<span class="co">#&gt; &lt;environment: 0x7fd24adadfb0&gt;</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; [[2]]</span>
 <span class="co">#&gt; function (x) </span>
 <span class="co">#&gt; {</span>
 <span class="co">#&gt;     0.04 * x[2] * (x[2] - 1)/2 * x[3]</span>
 <span class="co">#&gt; }</span>
-<span class="co">#&gt; &lt;environment: 0x7fa9955268f0&gt;</span></pre></div>
+<span class="co">#&gt; &lt;environment: 0x7fd24acd8af8&gt;</span></pre></div>
 <p>Note that dimerisations and multiple reactants are handled properly.</p>
 <p>Propensity functions take a state vector of species quantities, ordered according to the output of the <code>species</code> function.</p>
 <div class="sourceCode" id="cb8"><pre class="r"><span class="fu"><a href="reference/species.html">species</a></span>(<span class="no">network</span>)
@@ -181,7 +181,7 @@
 <h3 class="hasAnchor">
 <a href="#stoichiometric-matrix" class="anchor"></a>Stoichiometric matrix</h3>
 <p>A matrix that conveys how the system updates when reactions fire. The columns correspond to reactions, and the rows to species.</p>
-<div class="sourceCode" id="cb9"><pre class="r"><span class="no">mm_string</span> <span class="kw">&lt;-</span> <span class="fu">network_string_example</span>(<span class="st">"mm"</span>)
+<div class="sourceCode" id="cb9"><pre class="r"><span class="no">mm_string</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/network_string_examples.html">network_string_examples</a></span>(<span class="st">"mm"</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span>(<span class="no">mm_string</span>)
 <span class="co">#&gt; </span>
 <span class="co">#&gt; S + E &lt;-&gt; SE,    1.66e-3, 1e-4</span>
@@ -274,6 +274,7 @@
 <ul class="list-unstyled">
 <li><a href="https://github.com/dbarrows/bondr/actions"><img src="https://github.com/dbarrows/bondr/workflows/R-CMD-check/badge.svg" alt="R build status"></a></li>
 <li><a href="https://www.tidyverse.org/lifecycle/#experimental"><img src="https://img.shields.io/badge/lifecycle-experimental-orange.svg" alt="Lifecycle: experimental"></a></li>
+<li><a href="https://www.tidyverse.org/lifecycle/#maturing"><img src="https://img.shields.io/badge/lifecycle-maturing-blue.svg" alt="Lifecycle: maturing"></a></li>
 </ul>
 </div>
 </div>
