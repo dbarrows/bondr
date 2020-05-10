@@ -9,6 +9,8 @@
 status](https://github.com/dbarrows/bondr/workflows/R-CMD-check/badge.svg)](https://github.com/dbarrows/bondr/actions)
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+[![Lifecycle:
+maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
 <!-- badges: end -->
 
 Provides utilities and classes for working with reaction networks in R.
@@ -116,14 +118,14 @@ network <- network("
 #> {
 #>     2.5 * x[1]
 #> }
-#> <environment: 0x7fa9954b13a8>
+#> <environment: 0x7fd24adadfb0>
 #> 
 #> [[2]]
 #> function (x) 
 #> {
 #>     0.04 * x[2] * (x[2] - 1)/2 * x[3]
 #> }
-#> <environment: 0x7fa9955268f0>
+#> <environment: 0x7fd24acd8af8>
 ```
 
 Note that dimerisations and multiple reactants are handled properly.
@@ -147,7 +149,7 @@ A matrix that conveys how the system updates when reactions fire. The
 columns correspond to reactions, and the rows to species.
 
 ``` r
-mm_string <- network_string_example("mm")
+mm_string <- network_string_examples("mm")
 cat(mm_string)
 #> 
 #> S + E <-> SE,    1.66e-3, 1e-4

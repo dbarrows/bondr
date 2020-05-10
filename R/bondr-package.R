@@ -1,4 +1,4 @@
-#' [bondr] package
+#' [`bondr`] package
 #'
 #' Chemical reaction networks
 #'

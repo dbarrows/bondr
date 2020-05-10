@@ -24,6 +24,7 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 [![R build status](https://github.com/dbarrows/bondr/workflows/R-CMD-check/badge.svg)](https://github.com/dbarrows/bondr/actions)
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+[![Lifecycle: maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
 <!-- badges: end -->
 
 Provides utilities and classes for working with reaction networks in R.
@@ -112,7 +113,7 @@ state <- c(2, 5, 4) # Corresponds to A, B, C
 A matrix that conveys how the system updates when reactions fire. The columns correspond to reactions, and the rows to species.
 
 ```{r}
-mm_string <- network_string_example("mm")
+mm_string <- network_string_examples("mm")
 cat(mm_string)
 (network <- network(mm_string))
 stmat(network)
