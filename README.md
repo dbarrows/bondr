@@ -8,8 +8,6 @@
 [![R build
 status](https://github.com/dbarrows/bondr/workflows/R-CMD-check/badge.svg)](https://github.com/dbarrows/bondr/actions)
 [![Lifecycle:
-experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
-[![Lifecycle:
 maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
 <!-- badges: end -->
 
@@ -118,14 +116,14 @@ network <- network("
 #> {
 #>     2.5 * x[1]
 #> }
-#> <environment: 0x7fd24adadfb0>
+#> <environment: 0x7fa596794018>
 #> 
 #> [[2]]
 #> function (x) 
 #> {
 #>     0.04 * x[2] * (x[2] - 1)/2 * x[3]
 #> }
-#> <environment: 0x7fd24acd8af8>
+#> <environment: 0x7fa5957aaa70>
 ```
 
 Note that dimerisations and multiple reactants are handled properly.
