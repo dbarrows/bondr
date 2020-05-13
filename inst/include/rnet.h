@@ -10,7 +10,7 @@ using namespace std;
 
 struct reaction {
     uint order;
-    function<double(const vec&)> propensity;
+    function<double(vec&)> propensity;
     function<void(vec&)> update;
 };
 

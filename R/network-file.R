@@ -66,7 +66,7 @@ public:
 reaction_template <- '
             bondr::reaction {
                 ORDER,
-                [](const vec& x) -> double { return PROPENSITY; },
+                [](vec& x) -> double { return PROPENSITY; },
                 [](vec& x) { UPDATES }
             },
 '
