@@ -78,6 +78,7 @@ bottom_template <- '
 
 // [[Rcpp::export()]]
 SEXP CONSTRUCTOR_NAME() {
-    return Rcpp::XPtr<bondr::rnet>(new NETWORK_NAME());
+    auto net = new NETWORK_NAME();
+    return Rcpp::XPtr<bondr::rnet>(net);
 }
 '
