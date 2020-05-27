@@ -3,7 +3,7 @@
 \docType{package}
 \name{bondr}
 \alias{bondr}
-\title{\link{bondr} package}
+\title{\code{\link{bondr}} package}
 \description{
 Chemical reaction networks
 }

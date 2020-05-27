@@ -25,6 +25,11 @@ species.network <- function(x) {
 }
 
 #' @export
+rates.network <- function(x) {
+    sapply(x$reactions, function(r) r$rate)
+}
+
+#' @export
 print.network <- function(x, ...) {
     width <- ceiling((length(x$reactions) + 1) / 10)
     reactants_strings <- x$reactions %>% sapply(function(reaction) specieslist_string(reaction$reactants))

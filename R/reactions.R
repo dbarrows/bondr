@@ -75,3 +75,8 @@ species.reaction <- function(x) {
 
     c(species_names(x$reactants), species_names(x$products)) %>% unique()
 }
+
+#' @export
+rates.reaction <- function(x) {
+    x$rate
+}
