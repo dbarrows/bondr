@@ -8,5 +8,11 @@
 #' @export
 stmat <- function(network) {
     zero_vec <- numeric(length(species(network)))
-    updates(network) %>% sapply(function(up) up(zero_vec))
+    mat <- updates(network) %>%
+        lapply(function(up) up(zero_vec)) %>%
+        do.call(c, .) %>%
+        matrix(nrow = length(species(network)))
+    rownames(mat) <- species(network)
+    colnames(mat) <- str_c('R', 1:ncol(mat))
+    mat
 }

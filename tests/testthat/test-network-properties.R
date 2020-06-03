@@ -57,7 +57,12 @@ test_that('Stoichiometric matrix', {
     ')
     expect_equal(
         stmat(net),
-        matrix(c(-1, 1, 1, -1, 1, 0), nrow = 2)
+        {
+            mat <- matrix(c(-1, 1, 1, -1, 1, 0), nrow = 2)
+            rownames(mat) <- c('A', 'B')
+            colnames(mat) <- str_c('R', 1:3)
+            mat
+        }
     )
 
     net <- network('
@@ -66,6 +71,11 @@ test_that('Stoichiometric matrix', {
     ')
     expect_equal(
         stmat(net),
-        matrix(c(1, 0, 0, -1), nrow = 2)
+        {
+            mat <- matrix(c(1, 0, 0, -1), nrow = 2)
+            rownames(mat) <- c('A', 'X')
+            colnames(mat) <- str_c('R', 1:2)
+            mat
+        }
     )
 })
