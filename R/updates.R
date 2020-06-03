@@ -23,13 +23,15 @@ update_snippet <- function(reaction, all_species, cpp = FALSE) {
         if (!cpp)
             x <- c(x, delta)
         else if (cpp && delta != 0) {
-            index <- ifelse(cpp, 0, 1) + match(s, all_species) - 1
+            index <- (if (cpp) 0 else 1) + match(s, all_species) - 1
             x <- c(x, paste0('x[', index, '] += ', delta))
         }
     }
-    ifelse(cpp,
-           paste(x, collapse = '; ') %+% ';',
-           paste0('x + c(', paste(x, collapse = ', '), ')'))
+    if (cpp) {
+            paste(x, collapse = '; ') %+% ';'
+        } else {
+            paste0('x + c(', paste(x, collapse = ', '), ')')
+        }
 }
 
 update_function <- function(reaction, all_species) {

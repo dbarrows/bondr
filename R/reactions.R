@@ -12,7 +12,7 @@
 parse_reaction <- function(string) {
     csv <- split_trim(string, ',')
     bidirectional <- grepl('<->', string, fixed = TRUE)
-    dir_sym <- ifelse(bidirectional, '<->', '->')
+    dir_sym <- if (bidirectional) '<->' else '->'
     
     reaction_sym <- csv[1]
     rate <- as.numeric(csv[2])
@@ -46,13 +46,14 @@ parse_reaction <- function(string) {
 }
 
 specieslist_string <- function(s_list) {
-    string <- s_list %>% sapply(as.character) %>% paste(collapse = ' + ')
-    ifelse(string == '', '0', string)
+    string <- s_list %>% sapply(as.character) %>% paste0(collapse = ' + ')
+    if (0 < str_length(string)) string else '0'
 }
 
 order <- function(reaction) {
-    orders <- reaction$reactants %>% lapply(function(species) species$order)
-    ifelse(length(orders) == 0, 0, sum(unlist(orders)))
+    reaction$reactants %>%
+        sapply(function(species) species$order) %>%
+        sum()
 }
 
 #' @export

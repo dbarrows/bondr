@@ -10,11 +10,11 @@ propensities <- function(network, rateless = FALSE) {
 }
 
 propensity_snippet <- function(reaction, all_species, rateless = FALSE, cpp = FALSE) {
-    r <- ifelse(rateless, 1, reaction$rate)
+    r <- if (rateless) 1 else reaction$rate
     x <- sapply(reaction$reactants, function(s) {
             if (s$name %in% empty_sets)
                 return('')
-            index <- ifelse(cpp, 0, 1) + match(s$name, all_species) - 1
+            index <- (if (cpp) 0 else 1) + match(s$name, all_species) - 1
             prod <- paste0('x[', index, ']')
             if (s$order > 1) {
                 xi <- prod
@@ -24,8 +24,7 @@ propensity_snippet <- function(reaction, all_species, rateless = FALSE, cpp = FA
             }
             prod
         })
-    x_mul <- paste0(x, collapse = '*')
-    ifelse(str_length(x_mul) == 0, r, paste0(c(r, '*', x_mul), collapse = ''))
+    paste0(c(as.character(r), x), collapse = '*')
 }
 
 propensity_function <- function(reaction, all_species, rateless = FALSE) {

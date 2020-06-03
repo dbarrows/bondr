@@ -13,8 +13,7 @@ parse_network <- function(string) {
             warning(str_c(symbol$cross, ' Network not created: SBML files not yet supported'))
             return(invisible())
         } else {
-            read_file(string) %>%
-                str_replace('(?m)^#.*$', '')
+            read_file(string) %>% str_replace('(?m)^#.*$', '')
         }
 
     reactions <- string %>% split_trim('\n') %>% lapply(parse_reaction) %>% unlist(recursive = FALSE)
@@ -30,7 +29,7 @@ network <- parse_network
 
 #' @export
 species.network <- function(x) {
-    lapply(x$reactions, species) %>% unlist() %>% unique()
+    lapply(x$reactions, species) %>% do.call(c, .) %>% unique()
 }
 
 #' @export
@@ -52,7 +51,7 @@ print.network <- function(x, ...) {
     rate_width <- x$reactions %>% sapply(function(reaction) str_length(as.character(reaction$rate))) %>% max(4)
 
     desc <- blurred(str_c('# Reaction network: ',
-                          length(x$reactions), ' reaction', ifelse(1 < length(x$reactions), 's', ''),
+                          length(x$reactions), ' reaction', if (1 < length(x$reactions)) 's' else '',
                           ' x ',
                           length(species(x)), ' species')) %+% '\n'
     header <- blue(sprintf(paste0('%', reactants_width + width + 2, 's'), 'Reactants') %+%
