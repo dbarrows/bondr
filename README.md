@@ -31,9 +31,9 @@ parse it and turn it into an S3 object.
 library(bondr)
 
 (synthesis <- network('A + B -> C, 2.4e-5'))
-#> # Reaction network: 1 reaction x 3 species
-#>     Reactants    Products     Rate
-#> 1       A + B -> C         2.4e-05
+#> #  Reaction network: 1 reaction x 3 species
+#>      Reactants    Products     Rate
+#> R1       A + B -> C         2.4e-05
 ```
 
 ### Sources / sinks
@@ -42,9 +42,9 @@ You can specify sources / sinks using `0` as the species name.
 
 ``` r
 network('0 -> A, 4')
-#> # Reaction network: 1 reaction x 1 species
-#>     Reactants    Products  Rate
-#> 1           0 -> A            4
+#> #  Reaction network: 1 reaction x 1 species
+#>      Reactants    Products  Rate
+#> R1           0 -> A            4
 ```
 
 ### Multiple reactions
@@ -57,10 +57,10 @@ network_string <- '
     SE -> E + P, 1e-1
 '
 network(network_string)
-#> # Reaction network: 2 reactions x 4 species
-#>     Reactants    Products     Rate
-#> 1       S + E -> SE        0.00166
-#> 2          SE -> E + P         0.1
+#> #  Reaction network: 2 reactions x 4 species
+#>      Reactants    Products     Rate
+#> R1       S + E -> SE        0.00166
+#> R2          SE -> E + P         0.1
 ```
 
 ### Bidirectional reactions
@@ -70,10 +70,10 @@ additional rate specified at the end of the line.
 
 ``` r
 network('A <-> B, 1e-1, 2.2')
-#> # Reaction network: 2 reactions x 2 species
-#>     Reactants    Products  Rate
-#> 1           A -> B          0.1
-#> 2           B -> A          2.2
+#> #  Reaction network: 2 reactions x 2 species
+#>      Reactants    Products  Rate
+#> R1           A -> B          0.1
+#> R2           B -> A          2.2
 ```
 
 ### Species orders
@@ -116,14 +116,14 @@ network <- network('
 #> {
 #>     2.5 * x[1]
 #> }
-#> <environment: 0x7ff0e0740610>
+#> <environment: 0x7fdd9778ec78>
 #> 
 #> [[2]]
 #> function (x) 
 #> {
 #>     0.04 * x[2] * (x[2] - 1)/2 * x[3]
 #> }
-#> <environment: 0x7ff0e07b5a78>
+#> <environment: 0x7fdd9b00d350>
 ```
 
 Note that dimerisations and multiple reactants are handled properly.
@@ -153,17 +153,17 @@ cat(mm_string)
 #> S + E <-> SE,    1.66e-3, 1e-4
 #>    SE  -> E + P, 1e-1
 (network <- network(mm_string))
-#> # Reaction network: 3 reactions x 4 species
-#>     Reactants    Products     Rate
-#> 1       S + E -> SE        0.00166
-#> 2          SE -> S + E       1e-04
-#> 3          SE -> E + P         0.1
+#> #  Reaction network: 3 reactions x 4 species
+#>      Reactants    Products     Rate
+#> R1       S + E -> SE        0.00166
+#> R2          SE -> S + E       1e-04
+#> R3          SE -> E + P         0.1
 stmat(network)
-#>      [,1] [,2] [,3]
-#> [1,]   -1    1    0
-#> [2,]   -1    1    1
-#> [3,]    1   -1   -1
-#> [4,]    0    0    1
+#>    R1 R2 R3
+#> S  -1  1  0
+#> E  -1  1  1
+#> SE  1 -1 -1
+#> P   0  0  1
 ```
 
 ## Solving
