@@ -19,7 +19,7 @@ You can install the development version from
 [GitHub](https://github.com/) with:
 
 ``` r
-devtools::install_github("dbarrows/bondr")
+devtools::install_github('dbarrows/bondr')
 ```
 
 ## Creating networks
@@ -30,7 +30,7 @@ parse it and turn it into an S3 object.
 ``` r
 library(bondr)
 
-(synthesis <- network("A + B -> C, 2.4e-5"))
+(synthesis <- network('A + B -> C, 2.4e-5'))
 #> # Reaction network: 1 reaction x 3 species
 #>     Reactants    Products     Rate
 #> 1       A + B -> C         2.4e-05
@@ -41,7 +41,7 @@ library(bondr)
 You can specify sources / sinks using `0` as the species name.
 
 ``` r
-network("0 -> A, 4")
+network('0 -> A, 4')
 #> # Reaction network: 1 reaction x 1 species
 #>     Reactants    Products  Rate
 #> 1           0 -> A            4
@@ -52,10 +52,10 @@ network("0 -> A, 4")
 Reactions can be entered on new lines.
 
 ``` r
-network_string <- "
+network_string <- '
     S + E -> SE, 1.66e-3
     SE -> E + P, 1e-1
-"
+'
 network(network_string)
 #> # Reaction network: 2 reactions x 4 species
 #>     Reactants    Products     Rate
@@ -69,7 +69,7 @@ You can use `<->` to indicate bidirectional reactions, with an
 additional rate specified at the end of the line.
 
 ``` r
-network("A <-> B, 1e-1, 2.2")
+network('A <-> B, 1e-1, 2.2')
 #> # Reaction network: 2 reactions x 2 species
 #>     Reactants    Products  Rate
 #> 1           A -> B          0.1
@@ -82,7 +82,7 @@ Prefixing a species name with a number will be interpreted as a reaction
 coefficient.
 
 ``` r
-network <- network("2A -> B, 1e-1")
+network <- network('2A -> B, 1e-1')
 str(network$reactions[[1]])
 #> List of 3
 #>  $ reactants:List of 1
@@ -106,24 +106,24 @@ str(network$reactions[[1]])
 You can generate the propensity functions for a reaction network.
 
 ``` r
-network <- network("
+network <- network('
          A -> B, 2.5
     2B + C -> A, 4e-2
-")
+')
 (props <- propensities(network))
 #> [[1]]
 #> function (x) 
 #> {
 #>     2.5 * x[1]
 #> }
-#> <environment: 0x7fa596794018>
+#> <environment: 0x7ff0e0740610>
 #> 
 #> [[2]]
 #> function (x) 
 #> {
 #>     0.04 * x[2] * (x[2] - 1)/2 * x[3]
 #> }
-#> <environment: 0x7fa5957aaa70>
+#> <environment: 0x7ff0e07b5a78>
 ```
 
 Note that dimerisations and multiple reactants are handled properly.
@@ -147,7 +147,7 @@ A matrix that conveys how the system updates when reactions fire. The
 columns correspond to reactions, and the rows to species.
 
 ``` r
-mm_string <- network_string_examples("mm")
+mm_string <- network_string_examples('mm')
 cat(mm_string)
 #> 
 #> S + E <-> SE,    1.66e-3, 1e-4
@@ -207,7 +207,7 @@ library(wplot)
 sol %>%
     data.frame() %>%
     rename(Time = time) %>%
-    pivot_longer(species(network), names_to = "Species", values_to = "Quantity") %>%
+    pivot_longer(species(network), names_to = 'Species', values_to = 'Quantity') %>%
     ggplot(aes(x = Time, y = Quantity, colour = Species)) +
         geom_line() +
         theme_wc()

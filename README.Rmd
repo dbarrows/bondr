@@ -8,13 +8,13 @@ output: github_document
 require(svglite)
 knitr::opts_chunk$set(
     collapse = TRUE,
-    comment = "#>",
+    comment = '#>',
     dev = 'svglite',
-    fig.path = "man/figures/README-",
+    fig.path = 'man/figures/README-',
     fig.showtext = TRUE,
     fig.width = 7,
     fig.height = 4,
-    out.width = "100%",
+    out.width = '100%',
     message = FALSE
 )
 ```
@@ -33,7 +33,7 @@ Provides utilities and classes for working with reaction networks in R.
 You can install the development version from [GitHub](https://github.com/) with:
 
 ```r
-devtools::install_github("dbarrows/bondr")
+devtools::install_github('dbarrows/bondr')
 ```
 ## Creating networks
 
@@ -42,7 +42,7 @@ You write systems of reactions using a natural syntax, and bondr will parse it a
 ```{r}
 library(bondr)
 
-(synthesis <- network("A + B -> C, 2.4e-5"))
+(synthesis <- network('A + B -> C, 2.4e-5'))
 ```
 
 ### Sources / sinks
@@ -50,7 +50,7 @@ library(bondr)
 You can specify sources / sinks using `0` as the species name.
 
 ```{r}
-network("0 -> A, 4")
+network('0 -> A, 4')
 ```
 
 ### Multiple reactions
@@ -58,10 +58,10 @@ network("0 -> A, 4")
 Reactions can be entered on new lines.
 
 ```{r}
-network_string <- "
+network_string <- '
     S + E -> SE, 1.66e-3
     SE -> E + P, 1e-1
-"
+'
 network(network_string)
 ```
 
@@ -70,7 +70,7 @@ network(network_string)
 You can use `<->` to indicate bidirectional reactions, with an additional rate specified at the end of the line.
 
 ```{r}
-network("A <-> B, 1e-1, 2.2")
+network('A <-> B, 1e-1, 2.2')
 ```
 
 ### Species orders
@@ -78,7 +78,7 @@ network("A <-> B, 1e-1, 2.2")
 Prefixing a species name with a number will be interpreted as a reaction coefficient.
 
 ```{r}
-network <- network("2A -> B, 1e-1")
+network <- network('2A -> B, 1e-1')
 str(network$reactions[[1]])
 ```
 
@@ -89,10 +89,10 @@ str(network$reactions[[1]])
 You can generate the propensity functions for a reaction network.
 
 ```{r}
-network <- network("
+network <- network('
          A -> B, 2.5
     2B + C -> A, 4e-2
-")
+')
 (props <- propensities(network))
 ```
 
@@ -112,7 +112,7 @@ state <- c(2, 5, 4) # Corresponds to A, B, C
 A matrix that conveys how the system updates when reactions fire. The columns correspond to reactions, and the rows to species.
 
 ```{r}
-mm_string <- network_string_examples("mm")
+mm_string <- network_string_examples('mm')
 cat(mm_string)
 (network <- network(mm_string))
 stmat(network)
@@ -148,7 +148,7 @@ library(wplot)
 sol %>%
     data.frame() %>%
     rename(Time = time) %>%
-    pivot_longer(species(network), names_to = "Species", values_to = "Quantity") %>%
+    pivot_longer(species(network), names_to = 'Species', values_to = 'Quantity') %>%
     ggplot(aes(x = Time, y = Quantity, colour = Species)) +
         geom_line() +
         theme_wc()

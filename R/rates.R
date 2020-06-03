@@ -5,5 +5,5 @@
 #' @return [`vector`] of reaction rates
 #' @export
 rates <- function(x) {
-    UseMethod("rates")
+    UseMethod('rates')
 }

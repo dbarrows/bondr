@@ -9,27 +9,27 @@
 parse_species <- function(string) {
     if (string %in% empty_sets) return(NULL)
 
-    parsed_order <- str_extract(string, "^\\d+")
+    parsed_order <- str_extract(string, '^\\d+')
     order <- ifelse(is.na(parsed_order), 1, as.numeric(parsed_order))
-    name <- ifelse(order == 1, string, str_replace(string, "^\\d+", ""))
+    name <- ifelse(order == 1, string, str_replace(string, '^\\d+', ''))
     
     structure(list(
             name = name,
             order = order
         ),
-        class = "species"
+        class = 'species'
     )
 }
 
 #' @export
 as.character.species <- function(x, ...) {
-    coef <- ifelse(x$order == 1, "", x$order)
+    coef <- ifelse(x$order == 1, '', x$order)
     paste0(coef, x$name)
 }
 
 #' @export
 print.species <- function(x, ...) {
-    cat(paste(as.character(x), "\n"))
+    cat(paste(as.character(x), '\n'))
 }
 
 #' species
@@ -39,5 +39,5 @@ print.species <- function(x, ...) {
 #' @return [`vector`] of species names
 #' @export
 species <- function(x) {
-    UseMethod("species")
+    UseMethod('species')
 }

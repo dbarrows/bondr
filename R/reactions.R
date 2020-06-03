@@ -10,9 +10,9 @@
 #' @return [`list`] of reaction objects
 #' @export
 parse_reaction <- function(string) {
-    csv <- split_trim(string, ",")
-    bidirectional <- grepl("<->", string, fixed = TRUE)
-    dir_sym <- ifelse(bidirectional, "<->", "->")
+    csv <- split_trim(string, ',')
+    bidirectional <- grepl('<->', string, fixed = TRUE)
+    dir_sym <- ifelse(bidirectional, '<->', '->')
     
     reaction_sym <- csv[1]
     rate <- as.numeric(csv[2])
@@ -20,7 +20,7 @@ parse_reaction <- function(string) {
     species_syms <- split_trim(reaction_sym, dir_sym)
 
     species_list <- function(specieslist_string)
-        specieslist_string %>% split_trim("+") %>% lapply(parse_species) %>% .[!sapply(., is.null)]
+        specieslist_string %>% split_trim('+') %>% lapply(parse_species) %>% .[!sapply(., is.null)]
 
     reactants <- species_list(species_syms[1])
     products <- species_list(species_syms[2])
@@ -30,7 +30,7 @@ parse_reaction <- function(string) {
             products = products,
             rate = rate
         ),
-        class = "reaction"
+        class = 'reaction'
     ))
     if (bidirectional)
         reactions <- append(reactions,
@@ -39,15 +39,15 @@ parse_reaction <- function(string) {
                 products = reactants,
                 rate = as.numeric(csv[3])
             ),
-            class = "reaction")
+            class = 'reaction')
         ))
 
     reactions
 }
 
 specieslist_string <- function(s_list) {
-    string <- s_list %>% sapply(as.character) %>% paste(collapse = " + ")
-    ifelse(string == "", "0", string)
+    string <- s_list %>% sapply(as.character) %>% paste(collapse = ' + ')
+    ifelse(string == '', '0', string)
 }
 
 order <- function(reaction) {
@@ -60,12 +60,12 @@ as.character.reaction <- function(x, ...) {
     reactants_string <- specieslist_string(x$reactants)
     products_string <- specieslist_string(x$products)
 
-    reactants_string %+% " " %+% silver(right_arrow) %+% " " %+% products_string %+% silver(", rate: ") %+% blue(x$rate)
+    reactants_string %+% ' ' %+% silver(right_arrow) %+% ' ' %+% products_string %+% silver(', rate: ') %+% blue(x$rate)
 }
 
 #' @export
 print.reaction <- function(x, ...) {
-    cat(paste0(as.character(x), "\n"))
+    cat(paste0(as.character(x), '\n'))
 }
 
 #' @export

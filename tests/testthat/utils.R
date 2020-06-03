@@ -4,7 +4,7 @@ make_species <- function(name, order = 1) {
             name = name,
             order = order
         ),
-        class = "species"
+        class = 'species'
     )
 }
 
@@ -15,13 +15,13 @@ make_reaction <- function(reactants, products, rate) {
             products = products,
             rate = rate
         ),
-        class = "reaction"
+        class = 'reaction'
     )
 }
 
 make_network <- function(reactions) {
     structure(
         list(reactions = reactions),
-        class = "network"
+        class = 'network'
     )
 }

@@ -17,11 +17,11 @@ parse_network <- function(string) {
                 str_replace('(?m)^#.*$', '')
         }
 
-    reactions <- string %>% split_trim("\n") %>% lapply(parse_reaction) %>% unlist(recursive = FALSE)
+    reactions <- string %>% split_trim('\n') %>% lapply(parse_reaction) %>% unlist(recursive = FALSE)
     
     structure(
         list(reactions = reactions),
-        class = "network"
+        class = 'network'
     )
 }
 #' @rdname parse_network
@@ -51,30 +51,30 @@ print.network <- function(x, ...) {
     products_width <- max(max_length(products_strings), 10)
     rate_width <- x$reactions %>% sapply(function(reaction) str_length(as.character(reaction$rate))) %>% max(4)
 
-    desc <- blurred(str_c("# Reaction network: ",
-                          length(x$reactions), " reaction", ifelse(1 < length(x$reactions), "s", ""),
-                          " x ",
-                          length(species(x)), " species")) %+% "\n"
-    header <- blue(sprintf(paste0("%", reactants_width + width + 2, "s"), "Reactants") %+%
-                   "    " %+%
-                   sprintf(paste0("%", -products_width, "s"), "Products") %+%
-                   sprintf(paste0("%", rate_width, "s"), "Rate") %+%
-                   "\n")
+    desc <- blurred(str_c('# Reaction network: ',
+                          length(x$reactions), ' reaction', ifelse(1 < length(x$reactions), 's', ''),
+                          ' x ',
+                          length(species(x)), ' species')) %+% '\n'
+    header <- blue(sprintf(paste0('%', reactants_width + width + 2, 's'), 'Reactants') %+%
+                   '    ' %+%
+                   sprintf(paste0('%', -products_width, 's'), 'Products') %+%
+                   sprintf(paste0('%', rate_width, 's'), 'Rate') %+%
+                   '\n')
     string <- sapply(1:length(x$reactions), function(i) {
             reaction <- x$reactions[[i]]
-            reactants <- sprintf(paste0("%", reactants_width, "s"), strip_style(specieslist_string(reaction$reactants)))
-            products <- sprintf(paste0("%", -products_width, "s"), strip_style(specieslist_string(reaction$products)))
-            blurred(formatC(i, width = width)) %+% "  " %+%
-                reactants %+% " " %+%
-                silver(right_arrow) %+% " " %+%
+            reactants <- sprintf(paste0('%', reactants_width, 's'), strip_style(specieslist_string(reaction$reactants)))
+            products <- sprintf(paste0('%', -products_width, 's'), strip_style(specieslist_string(reaction$products)))
+            blurred(formatC(i, width = width)) %+% '  ' %+%
+                reactants %+% ' ' %+%
+                silver(right_arrow) %+% ' ' %+%
                 products %+%
-                sprintf(paste0("%", rate_width, "s"), reaction$rate)
+                sprintf(paste0('%', rate_width, 's'), reaction$rate)
         }) %>%
-        paste(collapse = "\n")
+        paste(collapse = '\n')
 
     out <- desc %+%
         header %+%
         string %+%
-        "\n"    
+        '\n'    
     cat(out)
 }

@@ -24,18 +24,18 @@ update_snippet <- function(reaction, all_species, cpp = FALSE) {
             x <- c(x, delta)
         else if (cpp && delta != 0) {
             index <- ifelse(cpp, 0, 1) + match(s, all_species) - 1
-            x <- c(x, paste0("x[", index, "] += ", delta))
+            x <- c(x, paste0('x[', index, '] += ', delta))
         }
     }
     ifelse(cpp,
-           paste(x, collapse = "; ") %+% ";",
-           paste0("x + c(", paste(x, collapse = ", "), ")"))
+           paste(x, collapse = '; ') %+% ';',
+           paste0('x + c(', paste(x, collapse = ', '), ')'))
 }
 
 update_function <- function(reaction, all_species) {
     up_string <- update_snippet(reaction, all_species)
-    text <- paste0("function(x) {\n",
-                   "    ", up_string, "\n",
-                   "}")
+    text <- paste0('function(x) {\n',
+                   '    ', up_string, '\n',
+                   '}')
     eval(parse(text = text))
 }

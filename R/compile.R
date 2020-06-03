@@ -14,7 +14,7 @@
 compile <- function(network, rateless = FALSE, force = FALSE, display_path = FALSE) {
     netfile <- network_file(network, rateless = rateless, force = force)
     if (display_path)
-        message(str_c("Network source written to '", netfile$path,"'"))
+        message(str_c('Network source written to \'', netfile$path, '\''))
     sourceCpp(netfile$path, cacheDir = path_dir(netfile$path), rebuild = force)
     netfile$constructor()
 }
