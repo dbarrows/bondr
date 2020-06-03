@@ -4,7 +4,7 @@ library(magrittr)
 
 source("utils.R")
 
-test_that("Network Parsing", {
+test_that("Network String Parsing", {
     expect_equal(
         network("A -> B, 1"),
         make_network(list(make_reaction(
@@ -43,5 +43,12 @@ test_that("Network Parsing", {
                 )
             )
         )
+    )
+})
+
+test_that('Network File Parsing', {
+    expect_equal(
+        network(system.file('testdata', 'mm.txt', package = 'bondr')),
+        network_examples('mm')
     )
 })

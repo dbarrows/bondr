@@ -7,11 +7,20 @@
 #' @return Reaction network [`list`] object
 #' @export
 parse_network <- function(string) {
+    string <- if (any(str_detect(string, arrows))) {
+            string
+        } else if (str_detect(string, '.xml$')) {
+            warning(str_c(symbol$cross, ' Network not created: SBML files not yet supported'))
+            return(invisible())
+        } else {
+            read_file(string) %>%
+                str_replace('(?m)^#.*$', '')
+        }
+
     reactions <- string %>% split_trim("\n") %>% lapply(parse_reaction) %>% unlist(recursive = FALSE)
     
-    structure(list(
-            reactions = reactions
-        ),
+    structure(
+        list(reactions = reactions),
         class = "network"
     )
 }
@@ -57,7 +66,7 @@ print.network <- function(x, ...) {
             products <- sprintf(paste0("%", -products_width, "s"), strip_style(specieslist_string(reaction$products)))
             blurred(formatC(i, width = width)) %+% "  " %+%
                 reactants %+% " " %+%
-                silver(left_arrow) %+% " " %+%
+                silver(right_arrow) %+% " " %+%
                 products %+%
                 sprintf(paste0("%", rate_width, "s"), reaction$rate)
         }) %>%

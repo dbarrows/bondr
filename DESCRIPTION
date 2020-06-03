@@ -23,6 +23,8 @@ Imports:
     stringi,
     fs,
     crayon,
-    digest
+    digest,
+    readr,
+    clisymbols
 Suggests: 
     testthat

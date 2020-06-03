@@ -1,0 +1,3 @@
+# Michaelis-Menten enzyme kinetics model
+S + E <-> SE,    1.66e-3, 1e-4
+   SE  -> E + P, 1e-1

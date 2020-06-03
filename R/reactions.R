@@ -60,7 +60,7 @@ as.character.reaction <- function(x, ...) {
     reactants_string <- specieslist_string(x$reactants)
     products_string <- specieslist_string(x$products)
 
-    reactants_string %+% " " %+% silver(left_arrow) %+% " " %+% products_string %+% silver(", rate: ") %+% blue(x$rate)
+    reactants_string %+% " " %+% silver(right_arrow) %+% " " %+% products_string %+% silver(", rate: ") %+% blue(x$rate)
 }
 
 #' @export
