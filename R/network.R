@@ -39,7 +39,7 @@ rates.network <- function(x) {
 
 #' @export
 print.network <- function(x, ...) {
-    width <- ceiling((length(x$reactions) + 1) / 10)
+    width <- ceiling(log(length(x$reactions) + 1)/log(10))
     reactants_strings <- x$reactions %>% sapply(function(reaction) specieslist_string(reaction$reactants))
     products_strings <- x$reactions %>% sapply(function(reaction) specieslist_string(reaction$products))
 
@@ -63,7 +63,7 @@ print.network <- function(x, ...) {
             reaction <- x$reactions[[i]]
             reactants <- sprintf(paste0('%', reactants_width, 's'), strip_style(specieslist_string(reaction$reactants)))
             products <- sprintf(paste0('%', -products_width, 's'), strip_style(specieslist_string(reaction$products)))
-            blurred(str_c('R', formatC(i, width = width))) %+% '  ' %+%
+            blurred(str_c('R', formatC(i, width = width, flag = '-'))) %+% '  ' %+%
                 reactants %+% ' ' %+%
                 silver(right_arrow) %+% ' ' %+%
                 products %+%
