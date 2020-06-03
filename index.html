@@ -85,17 +85,17 @@
 <div class="sourceCode" id="cb2"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">bondr</span>)
 
 (<span class="no">synthesis</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/parse_network.html">network</a></span>(<span class="st">'A + B -&gt; C, 2.4e-5'</span>))
-<span class="co">#&gt; # Reaction network: 1 reaction x 3 species</span>
-<span class="co">#&gt;     Reactants    Products     Rate</span>
-<span class="co">#&gt; 1       A + B -&gt; C         2.4e-05</span></pre></div>
+<span class="co">#&gt; #  Reaction network: 1 reaction x 3 species</span>
+<span class="co">#&gt;      Reactants    Products     Rate</span>
+<span class="co">#&gt; R1       A + B -&gt; C         2.4e-05</span></pre></div>
 <div id="sources--sinks" class="section level3">
 <h3 class="hasAnchor">
 <a href="#sources--sinks" class="anchor"></a>Sources / sinks</h3>
 <p>You can specify sources / sinks using <code>0</code> as the species name.</p>
 <div class="sourceCode" id="cb3"><pre class="r"><span class="fu"><a href="reference/parse_network.html">network</a></span>(<span class="st">'0 -&gt; A, 4'</span>)
-<span class="co">#&gt; # Reaction network: 1 reaction x 1 species</span>
-<span class="co">#&gt;     Reactants    Products  Rate</span>
-<span class="co">#&gt; 1           0 -&gt; A            4</span></pre></div>
+<span class="co">#&gt; #  Reaction network: 1 reaction x 1 species</span>
+<span class="co">#&gt;      Reactants    Products  Rate</span>
+<span class="co">#&gt; R1           0 -&gt; A            4</span></pre></div>
 </div>
 <div id="multiple-reactions" class="section level3">
 <h3 class="hasAnchor">
@@ -106,20 +106,20 @@
     SE -&gt; E + P, 1e-1
 '</span>
 <span class="fu"><a href="reference/parse_network.html">network</a></span>(<span class="no">network_string</span>)
-<span class="co">#&gt; # Reaction network: 2 reactions x 4 species</span>
-<span class="co">#&gt;     Reactants    Products     Rate</span>
-<span class="co">#&gt; 1       S + E -&gt; SE        0.00166</span>
-<span class="co">#&gt; 2          SE -&gt; E + P         0.1</span></pre></div>
+<span class="co">#&gt; #  Reaction network: 2 reactions x 4 species</span>
+<span class="co">#&gt;      Reactants    Products     Rate</span>
+<span class="co">#&gt; R1       S + E -&gt; SE        0.00166</span>
+<span class="co">#&gt; R2          SE -&gt; E + P         0.1</span></pre></div>
 </div>
 <div id="bidirectional-reactions" class="section level3">
 <h3 class="hasAnchor">
 <a href="#bidirectional-reactions" class="anchor"></a>Bidirectional reactions</h3>
 <p>You can use <code>&lt;-&gt;</code> to indicate bidirectional reactions, with an additional rate specified at the end of the line.</p>
 <div class="sourceCode" id="cb5"><pre class="r"><span class="fu"><a href="reference/parse_network.html">network</a></span>(<span class="st">'A &lt;-&gt; B, 1e-1, 2.2'</span>)
-<span class="co">#&gt; # Reaction network: 2 reactions x 2 species</span>
-<span class="co">#&gt;     Reactants    Products  Rate</span>
-<span class="co">#&gt; 1           A -&gt; B          0.1</span>
-<span class="co">#&gt; 2           B -&gt; A          2.2</span></pre></div>
+<span class="co">#&gt; #  Reaction network: 2 reactions x 2 species</span>
+<span class="co">#&gt;      Reactants    Products  Rate</span>
+<span class="co">#&gt; R1           A -&gt; B          0.1</span>
+<span class="co">#&gt; R2           B -&gt; A          2.2</span></pre></div>
 </div>
 <div id="species-orders" class="section level3">
 <h3 class="hasAnchor">
@@ -159,14 +159,14 @@
 <span class="co">#&gt; {</span>
 <span class="co">#&gt;     2.5 * x[1]</span>
 <span class="co">#&gt; }</span>
-<span class="co">#&gt; &lt;environment: 0x7ff0e0740610&gt;</span>
+<span class="co">#&gt; &lt;environment: 0x7fdd9778ec78&gt;</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; [[2]]</span>
 <span class="co">#&gt; function (x) </span>
 <span class="co">#&gt; {</span>
 <span class="co">#&gt;     0.04 * x[2] * (x[2] - 1)/2 * x[3]</span>
 <span class="co">#&gt; }</span>
-<span class="co">#&gt; &lt;environment: 0x7ff0e07b5a78&gt;</span></pre></div>
+<span class="co">#&gt; &lt;environment: 0x7fdd9b00d350&gt;</span></pre></div>
 <p>Note that dimerisations and multiple reactants are handled properly.</p>
 <p>Propensity functions take a state vector of species quantities, ordered according to the output of the <code>species</code> function.</p>
 <div class="sourceCode" id="cb8"><pre class="r"><span class="fu"><a href="reference/species.html">species</a></span>(<span class="no">network</span>)
@@ -187,17 +187,17 @@
 <span class="co">#&gt; S + E &lt;-&gt; SE,    1.66e-3, 1e-4</span>
 <span class="co">#&gt;    SE  -&gt; E + P, 1e-1</span>
 (<span class="no">network</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/parse_network.html">network</a></span>(<span class="no">mm_string</span>))
-<span class="co">#&gt; # Reaction network: 3 reactions x 4 species</span>
-<span class="co">#&gt;     Reactants    Products     Rate</span>
-<span class="co">#&gt; 1       S + E -&gt; SE        0.00166</span>
-<span class="co">#&gt; 2          SE -&gt; S + E       1e-04</span>
-<span class="co">#&gt; 3          SE -&gt; E + P         0.1</span>
+<span class="co">#&gt; #  Reaction network: 3 reactions x 4 species</span>
+<span class="co">#&gt;      Reactants    Products     Rate</span>
+<span class="co">#&gt; R1       S + E -&gt; SE        0.00166</span>
+<span class="co">#&gt; R2          SE -&gt; S + E       1e-04</span>
+<span class="co">#&gt; R3          SE -&gt; E + P         0.1</span>
 <span class="fu"><a href="reference/stmat.html">stmat</a></span>(<span class="no">network</span>)
-<span class="co">#&gt;      [,1] [,2] [,3]</span>
-<span class="co">#&gt; [1,]   -1    1    0</span>
-<span class="co">#&gt; [2,]   -1    1    1</span>
-<span class="co">#&gt; [3,]    1   -1   -1</span>
-<span class="co">#&gt; [4,]    0    0    1</span></pre></div>
+<span class="co">#&gt;    R1 R2 R3</span>
+<span class="co">#&gt; S  -1  1  0</span>
+<span class="co">#&gt; E  -1  1  1</span>
+<span class="co">#&gt; SE  1 -1 -1</span>
+<span class="co">#&gt; P   0  0  1</span></pre></div>
 </div>
 </div>
 <div id="solving" class="section level2">
