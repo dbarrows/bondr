@@ -51,8 +51,9 @@ specieslist_string <- function(s_list) {
 }
 
 order <- function(reaction) {
+    # note that `sapply` returns a list if input is empty, so we need to use `vapply`
     reaction$reactants %>%
-        sapply(function(species) species$order) %>%
+        vapply(function(species) species$order, numeric(1)) %>%
         sum()
 }
 

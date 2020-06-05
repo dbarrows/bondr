@@ -24,12 +24,14 @@ devtools::install_github('dbarrows/bondr')
 
 ## Creating networks
 
-You write systems of reactions using a natural syntax, and bondr will
+You write systems of reactions using a natural syntax, and `bondr` will
 parse it and turn it into an S3 object.
 
 ``` r
 library(bondr)
+```
 
+``` r
 (synthesis <- network('A + B -> C, 2.4e-5'))
 #> #  Reaction network: 1 reaction x 3 species
 #>      Reactants    Products     Rate
@@ -49,14 +51,13 @@ network('0 -> A, 4')
 
 ### Multiple reactions
 
-Reactions can be entered on new lines.
+Additional reactions can be entered on new lines.
 
 ``` r
-network_string <- '
+network('
     S + E -> SE, 1.66e-3
     SE -> E + P, 1e-1
-'
-network(network_string)
+')
 #> #  Reaction network: 2 reactions x 4 species
 #>      Reactants    Products     Rate
 #> R1       S + E -> SE        0.00166
@@ -82,8 +83,8 @@ Prefixing a species name with a number will be interpreted as a reaction
 coefficient.
 
 ``` r
-network <- network('2A -> B, 1e-1')
-str(network$reactions[[1]])
+net <- network('2A -> B, 1e-1')
+str(net$reactions[[1]])
 #> List of 3
 #>  $ reactants:List of 1
 #>   ..$ :List of 2
@@ -106,24 +107,24 @@ str(network$reactions[[1]])
 You can generate the propensity functions for a reaction network.
 
 ``` r
-network <- network('
+net <- network('
          A -> B, 2.5
     2B + C -> A, 4e-2
 ')
-(props <- propensities(network))
+(props <- propensities(net))
 #> [[1]]
 #> function (x) 
 #> {
 #>     2.5 * x[1]
 #> }
-#> <environment: 0x7fdd9778ec78>
+#> <environment: 0x7fec961bd580>
 #> 
 #> [[2]]
 #> function (x) 
 #> {
 #>     0.04 * x[2] * (x[2] - 1)/2 * x[3]
 #> }
-#> <environment: 0x7fdd9b00d350>
+#> <environment: 0x7fec962dd5f0>
 ```
 
 Note that dimerisations and multiple reactants are handled properly.
@@ -132,7 +133,7 @@ Propensity functions take a state vector of species quantities, ordered
 according to the output of the `species` function.
 
 ``` r
-species(network)
+species(net)
 #> [1] "A" "B" "C"
 state <- c(2, 5, 4) # Corresponds to A, B, C
 (props[[1]](state))
@@ -152,13 +153,13 @@ cat(mm_string)
 #> 
 #> S + E <-> SE,    1.66e-3, 1e-4
 #>    SE  -> E + P, 1e-1
-(network <- network(mm_string))
+(net <- network(mm_string))
 #> #  Reaction network: 3 reactions x 4 species
 #>      Reactants    Products     Rate
 #> R1       S + E -> SE        0.00166
 #> R2          SE -> S + E       1e-04
 #> R3          SE -> E + P         0.1
-stmat(network)
+stmat(net)
 #>    R1 R2 R3
 #> S  -1  1  0
 #> E  -1  1  1
@@ -169,8 +170,9 @@ stmat(network)
 ## Solving
 
 `bondr` also provides a function `deriv` to get a derivative function
-compatible with the `deSolve` R package, which contains a number of
-numerical integrators.
+compatible with the
+[`deSolve`](https://cran.r-project.org/web/packages/deSolve/index.html)
+R package, which contains a number of numerical integrators.
 
 ### Using `deSolve`
 
@@ -182,7 +184,7 @@ library(deSolve)
 
 y <- c(S = 300, E = 120, SE = 0, P = 0)
 times <- seq(0, 30, length.out = 100)
-func <- deriv(network)
+func <- deriv(net)
 
 sol <- ode(y, times, func)
 head(sol)
@@ -197,7 +199,8 @@ head(sol)
 
 ### Plotting
 
-You can then plot the solution using a few `tidyverse` functions fairly
+You can then plot the solution using a few
+[`tidyverse`](https://www.tidyverse.org/packages/) functions fairly
 easily.
 
 ``` r
@@ -207,10 +210,10 @@ library(wplot)
 sol %>%
     data.frame() %>%
     rename(Time = time) %>%
-    pivot_longer(species(network), names_to = 'Species', values_to = 'Quantity') %>%
+    pivot_longer(species(net), names_to = 'Species', values_to = 'Quantity') %>%
     ggplot(aes(x = Time, y = Quantity, colour = Species)) +
         geom_line() +
         theme_wc()
 ```
 
-<img src="man/figures/README-unnamed-chunk-11-1.svg" width="100%" />
+<img src="man/figures/README-unnamed-chunk-13-1.svg" width="100%" />

@@ -37,11 +37,15 @@ devtools::install_github('dbarrows/bondr')
 ```
 ## Creating networks
 
-You write systems of reactions using a natural syntax, and bondr will parse it and turn it into an S3 object.
+You write systems of reactions using a natural syntax, and `bondr` will parse it and turn it into an S3 object.
 
-```{r}
+```{r, include = FALSE}
+devtools::load_all()
+```
+```{r, eval = FALSE}
 library(bondr)
-
+```
+```{r}
 (synthesis <- network('A + B -> C, 2.4e-5'))
 ```
 
@@ -55,14 +59,13 @@ network('0 -> A, 4')
 
 ### Multiple reactions
 
-Reactions can be entered on new lines.
+Additional reactions can be entered on new lines.
 
 ```{r}
-network_string <- '
+network('
     S + E -> SE, 1.66e-3
     SE -> E + P, 1e-1
-'
-network(network_string)
+')
 ```
 
 ### Bidirectional reactions
@@ -78,8 +81,8 @@ network('A <-> B, 1e-1, 2.2')
 Prefixing a species name with a number will be interpreted as a reaction coefficient.
 
 ```{r}
-network <- network('2A -> B, 1e-1')
-str(network$reactions[[1]])
+net <- network('2A -> B, 1e-1')
+str(net$reactions[[1]])
 ```
 
 ## Using networks
@@ -89,11 +92,11 @@ str(network$reactions[[1]])
 You can generate the propensity functions for a reaction network.
 
 ```{r}
-network <- network('
+net <- network('
          A -> B, 2.5
     2B + C -> A, 4e-2
 ')
-(props <- propensities(network))
+(props <- propensities(net))
 ```
 
 Note that dimerisations and multiple reactants are handled properly.
@@ -101,7 +104,7 @@ Note that dimerisations and multiple reactants are handled properly.
 Propensity functions take a state vector of species quantities, ordered according to the output of the `species` function.
 
 ```{r}
-species(network)
+species(net)
 state <- c(2, 5, 4) # Corresponds to A, B, C
 (props[[1]](state))
 (props[[2]](state))
@@ -114,13 +117,13 @@ A matrix that conveys how the system updates when reactions fire. The columns co
 ```{r}
 mm_string <- network_string_examples('mm')
 cat(mm_string)
-(network <- network(mm_string))
-stmat(network)
+(net <- network(mm_string))
+stmat(net)
 ```
 
 ## Solving
 
-`bondr` also provides a function `deriv` to get a derivative function compatible with the `deSolve` R package, which contains a number of numerical integrators.
+`bondr` also provides a function `deriv` to get a derivative function compatible with the [`deSolve`](https://cran.r-project.org/web/packages/deSolve/index.html) R package, which contains a number of numerical integrators.
 
 ### Using `deSolve`
 
@@ -131,7 +134,7 @@ library(deSolve)
 
 y <- c(S = 300, E = 120, SE = 0, P = 0)
 times <- seq(0, 30, length.out = 100)
-func <- deriv(network)
+func <- deriv(net)
 
 sol <- ode(y, times, func)
 head(sol)
@@ -139,7 +142,7 @@ head(sol)
 
 ### Plotting
 
-You can then plot the solution using a few `tidyverse` functions fairly easily.
+You can then plot the solution using a few [`tidyverse`](https://www.tidyverse.org/packages/) functions fairly easily.
 
 ```{r}
 library(tidyverse)
@@ -148,7 +151,7 @@ library(wplot)
 sol %>%
     data.frame() %>%
     rename(Time = time) %>%
-    pivot_longer(species(network), names_to = 'Species', values_to = 'Quantity') %>%
+    pivot_longer(species(net), names_to = 'Species', values_to = 'Quantity') %>%
     ggplot(aes(x = Time, y = Quantity, colour = Species)) +
         geom_line() +
         theme_wc()

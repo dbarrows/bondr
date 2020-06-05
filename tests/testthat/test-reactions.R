@@ -45,3 +45,26 @@ test_that('Reaction parsing', {
         ))
     )
 })
+
+test_that('Reaction orders', {
+    expect_equal(
+        order(parse_reaction('0 -> X, 1')[[1]]),
+        0
+    )
+    expect_equal(
+        order(parse_reaction('X -> 0, 1')[[1]]),
+        1
+    )
+    expect_equal(
+        order(parse_reaction('A + B -> X, 1')[[1]]),
+        2
+    )
+    expect_equal(
+        order(parse_reaction('A + 2B -> X, 1')[[1]]),
+        3
+    )
+    expect_equal(
+        order(parse_reaction('2B + 3X -> X, 1')[[1]]),
+        5
+    )
+})
