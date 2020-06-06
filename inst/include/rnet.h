@@ -7,6 +7,7 @@ namespace bondr {
 
 using namespace arma;
 using namespace std;
+using uint = unsigned int;
 
 struct reaction {
     uint order;
