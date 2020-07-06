@@ -16,6 +16,7 @@ reference:
     - updates
     - stmat
     - deriv
+    - latex
 - title: "Parsing"
   desc: Reaction network and network component parsing
 - contents:
