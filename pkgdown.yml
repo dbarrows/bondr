@@ -2,7 +2,7 @@ pandoc: 2.7.3
 pkgdown: 1.5.1
 pkgdown_sha: ~
 articles: []
-last_built: 2020-07-06T15:50Z
+last_built: 2020-07-07T16:45Z
 urls:
   reference: https://dexter.barrows.io/bondr/reference
   article: https://dexter.barrows.io/bondr/articles
