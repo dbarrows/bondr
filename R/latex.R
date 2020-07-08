@@ -62,7 +62,7 @@ eq_footer <- r'(
 )'
 
 table_header <- r'(
-\begin{tabular}{rcl@{\hskip 1cm}l}
+\begin{tabular}{>{$}r<{$}>{$}c<{$}>{$}l<{$}@{\hskip 1cm}l}
     \toprule
         \multicolumn{3}{l}{Reaction} & Rate \\
     \midrule
