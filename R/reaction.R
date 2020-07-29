@@ -50,13 +50,6 @@ specieslist_string <- function(s_list) {
     if (0 < str_length(string)) string else '0'
 }
 
-order <- function(reaction) {
-    # note that `sapply` returns a list if input is empty, so we need to use `vapply`
-    reaction$reactants %>%
-        vapply(function(species) species$order, numeric(1)) %>%
-        sum()
-}
-
 #' @export
 as.character.reaction <- function(x, ...) {
     reactants_string <- specieslist_string(x$reactants)
@@ -81,4 +74,12 @@ species.reaction <- function(x) {
 #' @export
 rates.reaction <- function(x) {
     x$rate
+}
+
+#' @export
+order.reaction <- function(x) {
+    # note that `sapply` returns a list if input is empty, so we need to use `vapply`
+    x$reactants %>%
+        vapply(function(species) species$order, numeric(1)) %>%
+        sum()
 }

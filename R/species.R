@@ -32,6 +32,11 @@ print.species <- function(x, ...) {
     cat(paste(as.character(x), '\n'))
 }
 
+#' @export
+order.species <- function(x) {
+    x$order
+}
+
 #' species
 #' 
 #' @param x object containing species
