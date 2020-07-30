@@ -15,7 +15,8 @@ Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
-Imports: 
+Imports:
+    spurcore,
     stringr,
     magrittr,
     Rcpp,
@@ -26,5 +27,11 @@ Imports:
     digest,
     readr,
     clisymbols
+Remotes:
+    dbarrows/spurcore
+LinkingTo:
+    Rcpp,
+    RcppArmadillo,
+    spurcore
 Suggests: 
     testthat

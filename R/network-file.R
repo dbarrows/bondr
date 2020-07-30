@@ -51,10 +51,14 @@ network_file <- function(network, rateless = FALSE, force = FALSE) {
 
 top_template <- '
 // [[Rcpp::depends(RcppArmadillo)]]
+// [[Rcpp::depends(spurcore)]]
 
 #include <rnet.h>
 
+/*using namespace std;
 using namespace arma;
+using namespace core;*/
+using namespace bondr;
 
 class NETWORK_NAME : public bondr::rnet {
 public:
@@ -67,6 +71,7 @@ reaction_template <- '
             bondr::reaction {
                 ORDER,
                 [](vec& x) -> double { return PROPENSITY; },
+                [](vector<dual>& x) -> dual { return PROPENSITY; },
                 [](vec& x) { UPDATES }
             },
 '
