@@ -32,7 +32,7 @@ network_file <- function(network, rateless = FALSE, force = FALSE) {
     file_path <- path(temp_dir, file_name)
 
     if (!file_exists(file_path) || force) {
-        file_copy(path(system.file('include', package = 'bondr'), 'rnet.h'),
+        file_copy(path(system.file('include', package = 'bondr'), 'bondr', 'rnet.h'),
                   path(temp_dir, 'rnet.h'),
                   overwrite = TRUE)
         f <- file(file_path)
