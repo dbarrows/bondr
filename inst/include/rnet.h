@@ -2,7 +2,7 @@
 
 #include <RcppArmadillo.h>
 #include <functional>
-#include <dual.h>
+#include <core/dual.h>
 
 namespace bondr {
 
