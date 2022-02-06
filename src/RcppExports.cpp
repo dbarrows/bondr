@@ -6,6 +6,11 @@
 
 using namespace Rcpp;
 
+#ifdef RCPP_USE_GLOBAL_ROSTREAM
+Rcpp::Rostream<true>&  Rcpp::Rcout = Rcpp::Rcpp_cout_get();
+Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
+#endif
+
 // propensities_cpp
 arma::vec propensities_cpp(SEXP rnet_xptr, arma::vec v);
 RcppExport SEXP _bondr_propensities_cpp(SEXP rnet_xptrSEXP, SEXP vSEXP) {
