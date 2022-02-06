@@ -28,7 +28,7 @@ Imports:
     readr,
     clisymbols
 Remotes:
-    dbarrows/spurcore
+    github::dbarrows/spurcore
 LinkingTo:
     Rcpp,
     RcppArmadillo,
